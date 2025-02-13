@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\ExcellenceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
@@ -15,6 +16,7 @@ Route::middleware('locale')->group(function () {
     });
 
     Route::get('/', HomeController::class)->name('home');
+    Route::get('/excellence', ExcellenceController::class)->name('excellence');
     Route::get('/about', AboutController::class)->name('about');
 
     Route::get('/dashboard',DashboardController::class)->name('dashboard');

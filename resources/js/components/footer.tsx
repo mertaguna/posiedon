@@ -38,7 +38,7 @@ export function Footer() {
             <Link href="#">{__('Our services')}</Link>
           </div>
           <div className="underline-offset-8 hover:underline">
-            <Link href="#">{__('About us')}</Link>
+            <Link href={route('about')}>{__('About us')}</Link>
           </div>
           <div className="underline-offset-8 hover:underline">
             <Link href="#">{__('Career')}</Link>

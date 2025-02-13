@@ -11,18 +11,18 @@ const BodyDiagram = () => {
     { name: 'Paru-Paru', position: 'top-72 right-36' },
     { name: 'Ginjal', position: 'top-96 right-44' },
     { name: 'Siku', position: 'top-96 left-44' },
-    { name: 'Lengan', position: 'bottom-96 left-44' },
-    { name: 'Hati', position: 'top-24 left-32' },
-    { name: 'Perut', position: 'top-32 left-32' },
-    { name: 'Panggul', position: 'top-48 left-32' },
-    { name: 'Paha', position: 'top-60 left-32' },
-    { name: 'Lutut', position: 'top-72 right-16' },
-    { name: 'Pergelangan Kaki', position: 'bottom-8 right-16' },
-    { name: 'Kaki', position: 'bottom-8 left-32' },
+    { name: 'Lengan', position: 'bottom-90 left-36' },
+    { name: 'Hati', position: 'top-80 left-48' },
+    { name: 'Perut', position: 'top-[420px] right-44' },
+    { name: 'Panggul', position: 'top-[480px] right-36' },
+    { name: 'Paha', position: 'bottom-96 right-52' },
+    { name: 'Lutut', position: 'bottom-72 left-52' },
+    { name: 'Pergelangan Kaki', position: 'bottom-44 right-32' },
+    { name: 'Kaki', position: 'bottom-32 left-52' },
   ];
 
   return (
-    <div className="to9 flex flex-col items-center">
+    <div className="flex flex-col items-center pt-10">
       <h1 className="text-center text-2xl font-semibold">
         What center of exellence are you looking for?
       </h1>
@@ -32,7 +32,7 @@ const BodyDiagram = () => {
           {bodyParts.map((part) => (
             <button
               key={part.name}
-              className={`absolute text-primary hover:underline ${part.position}`}
+              className={`absolute rounded-lg bg-primary px-3 py-1 font-bold text-amber-200 hover:underline ${part.position}`}
               onClick={() => setSelectedPart(part.name)}
             >
               {part.name}

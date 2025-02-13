@@ -1,4 +1,3 @@
-import BodyDiagram from '@/components/body-diagram';
 import { Timeline } from '@/components/ui/timeline';
 import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
@@ -235,8 +234,6 @@ export default function About() {
       <div className="w-full">
         <Timeline data={data} />
       </div>
-
-      <BodyDiagram />
     </AppLayout>
   );
 }
