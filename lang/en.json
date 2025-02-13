@@ -1,8 +1,15 @@
 {
-    "Garbaméd Hospital": "Garbaméd Hospital",
+    "Garbaméd Hospital": "GarbaMéd Hospital",
     "Home" : "Home",
     "About us" : "About us",
     "Our service" : "Our service",
     "Doctor" : "Doctor",
-    "Flag" : "🇺🇸"
+    "Flag" : "🇺🇸",
+    "Appointment": "Appointment",
+    "Your Health" : "Your Health",
+    "is Our Top Priority" : "is Our Top Priority",
+    "Description of the hospital" : "GarbaMéd Hospital is a private general hospital located in the northern badung area with capacity of 100 beds and supported by doctors, specialists with high quality medical equipment. We provides outpatient services polyclinics, inpatient, emergency care, childbirth, laboratory examinations, and cooperates with many private insurance companies and also serves patients with BPJS",
+    "Description footer" : "GarbaMéd Hospital is a private general hospital located in the northern badung area with capacity of 100 beds and supported by doctors, specialists with high quality medical equipment.",
+    "We are committed to providing the best possible care for our patients." : "We are committed to providing the best possible care for our patients."
+
 }

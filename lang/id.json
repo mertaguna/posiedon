@@ -1,8 +1,16 @@
 {
-    "Garbaméd Hospital": "RSU Garbaméd",
+    "Garbaméd Hospital": "RSU GarbaMéd",
     "Home" : "Beranda",
     "About us" : "Tentang kami",
     "Our services" : "Layanan kami",
+    "Contact Us" : "Hubungi kami",
     "Doctor" : "Dokter",
-    "Flag" : "🇮🇩"
+    "Emergency Call" : "Panggilan Darurat",
+    "Flag" : "🇮🇩",
+    "Appointment": "Buat janji",
+    "Your Health" : "Kesehatan Anda",
+    "is Our Top Priority" : "Prioritas Utama Kami",
+    "Description of the hospital" : "RSU GarbaMéd adalah Rumah Sakit Umum milik swasta yang terletak di Kabupaten Badung, Bali, Indonesia. Dilengkapi dengan 100 tempat tidur dan didukung oleh dokter, dokter spesialis serta perawat medis dan tenanga non-medis yang bersertifikat dan berkualitas. Kami memberikan layanan rawat jalan (poliklinik), rawat inap, perawatan kegawat daruratan, persalinan, pemeriksaan laboratorium, cuci darah serta bekerjasama dengan asuransi swasta dalam & luar negeri. Kami siap melayani BPJS Kesehatan dan BPJS Ketenagakerjaan.",
+    "Description footer" : "RSU GarbaMéd adalah Rumah Sakit Umum milik swasta yang terletak di Kabupaten Badung, Bali, Indonesia. Dilengkapi dengan 100 tempat tidur dan didukung oleh dokter, dokter spesialis serta perawat medis dan tenanga non-medis yang bersertifikat dan berkualitas.",
+    "We are committed to providing the best possible care for our patients." : "Kami berkomitmen untuk memberikan perawatan terbaik bagi pasien kami."
 }
