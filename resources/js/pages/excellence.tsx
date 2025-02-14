@@ -1,12 +1,10 @@
-import BodyDiagram from '@/components/body-diagram';
+import { BodyHuman } from '@/components/body-human';
 import AppLayout from '@/Layouts/app-layout';
 
 export default function Excellence() {
   return (
     <AppLayout>
-      <div className="">
-        <BodyDiagram />
-      </div>
+      <BodyHuman />
     </AppLayout>
   );
 }

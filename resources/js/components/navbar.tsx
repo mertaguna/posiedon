@@ -44,7 +44,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/50 backdrop-blur-lg">
+    <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-lg">
       <Container>
         {/* <NavbarTop /> */}
         <div className="flex items-center justify-between">
@@ -62,16 +62,16 @@ export function Navbar() {
           </Link>
           <div className="flex flex-col space-y-2 p-0">
             <div className="flex flex-row-reverse">
-              <div className="flex flex-row gap-11 font-bold">
-                <div className="flex cursor-pointer items-end rounded-full p-1 underline-offset-8 hover:underline">
-                  <Siren className="size-6 fill-amber-200 stroke-rose-600" />
-                  <h3 className="ml-2 text-sm text-rose-600">
+              <div className="flex flex-row gap-3 font-bold">
+                <div className="flex cursor-pointer items-center rounded-full underline-offset-8 hover:underline hover:decoration-red-500">
+                  <Siren className="size-4 fill-amber-200 stroke-rose-600" />
+                  <h3 className="ml-2 text-xs text-rose-600">
                     +62 812 5286 6162
                   </h3>
                 </div>
-                <div className="flex cursor-pointer items-end rounded-full p-1 underline-offset-8 hover:underline">
-                  <Headset className="size-6 stroke-primary" />
-                  <div className="ml-2 text-sm text-primary">
+                <div className="flex cursor-pointer items-center rounded-full underline-offset-8 hover:underline hover:decoration-primary">
+                  <Headset className="size-4 stroke-primary" />
+                  <div className="ml-2 text-xs text-primary">
                     (0361) 909 3584
                   </div>
                 </div>
@@ -141,7 +141,7 @@ export function Navlink({ current, classname, ...props }: NavlinkProps) {
         'rounded-xl px-4 py-2.5 text-sm underline-offset-8 transition duration-300 ease-in-out hover:underline focus:outline-none',
         current
           ? 'font-semibold text-primary underline underline-offset-8'
-          : 'text-gray-400 hover:text-primary',
+          : 'text-slate-800 hover:text-primary',
         classname,
       )}
       {...props}

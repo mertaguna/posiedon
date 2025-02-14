@@ -16,5 +16,5 @@
             "ziggy-js": ["./vendor/tightenco/ziggy"]
         }
     },
-    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts", "resources/js/lib/lang.js"]
+    "include": ["resources/js/**/*.ts", "resources/js/**/*.tsx", "resources/js/**/*.d.ts", "resources/js/lib/lang.js", "resources/js/components/body-map.jsx", "resources/js/components/body-mapp.jsx", "resources/js/components/ui/body-part.js"]
 }
