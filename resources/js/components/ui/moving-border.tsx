@@ -9,7 +9,7 @@ import {
 } from 'framer-motion';
 import React, { useRef } from 'react';
 
-export function Button({
+export function ButtonMoving({
   borderRadius = '1.75rem',
   children,
   as: Component = 'button',

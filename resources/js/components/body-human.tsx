@@ -2,13 +2,14 @@ import {
   Dialog,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { __ } from '@/lib/lang';
 
 import { BodyComponent } from '@darshanpatel2608/human-body-react';
 import { Link } from '@inertiajs/react';
+import { ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
 
 const BodyPart = {};
@@ -19,7 +20,7 @@ export function BodyHuman() {
   const [menu, setMenu] = useState<
     { label: string; action: string; description: string }[]
   >([]);
-  const [description, setDescription] = useState<string>('');
+  const [description, setDescription] = useState<{ name: string }[]>([]);
 
   const handleClick = (part: string) => {
     setSelectedPart(part);
@@ -35,14 +36,42 @@ export function BodyHuman() {
   const getDescription = (part: string) => {
     switch (part) {
       case 'head':
-        return __('Deskripsi tentang kepala.');
+        return [
+          {
+            name: 'Kepala',
+          },
+        ];
+      case 'chest':
+        return [
+          {
+            name: 'Dada',
+          },
+        ];
+      case 'stomach':
+        return [
+          {
+            name: 'Perut',
+          },
+        ];
       case 'left_shoulder':
-        return __('Deskripsi tentang orthopedi.');
+        return [
+          {
+            name: 'Bahu Kiri',
+          },
+        ];
       case 'shoulder':
-        return __('Deskripsi tentang bahu.');
+        return [
+          {
+            name: 'Bahu',
+          },
+        ];
       // Add descriptions for other body parts
       default:
-        return __('Deskripsi tidak tersedia.');
+        return [
+          {
+            name: 'blm ada',
+          },
+        ];
     }
   };
 
@@ -55,38 +84,160 @@ export function BodyHuman() {
             action: '/',
             description: 'Otak',
           },
+        ];
+      case 'chest':
+        return [
           {
-            label: 'Cari dokter spesialis kepala',
-            action: '/cari-dokter-kepala',
-            description: 'Otak',
+            label: 'Kardiologi',
+            action: '/',
+            description: 'Jantung',
+          },
+          {
+            label: 'Klinik Paru Terpadu',
+            action: '/',
+            description: 'Paru-paru',
+          },
+        ];
+      case 'stomach':
+        return [
+          {
+            label: 'Digestif',
+            action: '/',
+            description: 'Hati',
+          },
+          {
+            label: 'Andrologi',
+            action: '/',
+            description: 'Perut',
+          },
+          {
+            label: 'Fertilitas',
+            action: '/',
+            description: 'Perut',
+          },
+          {
+            label: 'Endourologi',
+            action: '/',
+            description: 'Ginjal',
+          },
+          {
+            label: 'Pediatri',
+            action: '/',
+            description: 'Ginjal',
+          },
+          {
+            label: 'Urologi Onkologi',
+            action: '/',
+            description: 'Ginjal',
           },
         ];
       case 'left_shoulder':
         return [
           {
-            label: 'Informasi tentang orthopedi',
-            action: '/informasi-leher',
-            description: 'Otak',
-          },
-          {
-            label: 'Cari dokter spesialis leher',
-            action: '/cari-dokter-leher',
-            description: 'Otak',
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Bahu Kanan',
           },
         ];
-      case 'shoulder':
+      case 'left_arm':
         return [
           {
-            label: 'Informasi tentang bahu',
-            action: '/informasi-bahu',
-            description: 'Otak',
-          },
-          {
-            label: 'Cari dokter spesialis bahu',
-            action: '/cari-dokter-bahu',
-            description: 'Otak',
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Lengan Kiri',
           },
         ];
+      case 'left_hand':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Tangan Kiri',
+          },
+        ];
+      case 'right_shoulder':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Bahu Kanan',
+          },
+        ];
+      case 'right_arm':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Lengan Kanan',
+          },
+        ];
+      case 'right_hand':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Tangan Kanan',
+          },
+        ];
+      case 'left_leg_upper':
+        return [
+          {
+            label: 'Fertilitas',
+            action: '/',
+            description: 'Panggul',
+          },
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Paha',
+          },
+        ];
+      case 'left_leg_lower':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Lutut',
+          },
+        ];
+      case 'left_foot':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Kaki',
+          },
+        ];
+      case 'right_leg_upper':
+        return [
+          {
+            label: 'Fertilitas',
+            action: '/',
+            description: 'Panggul',
+          },
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Paha',
+          },
+        ];
+      case 'right_leg_lower':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Lutut',
+          },
+        ];
+      case 'right_foot':
+        return [
+          {
+            label: 'Orthopedi',
+            action: '/',
+            description: 'Kaki',
+          },
+        ];
+
       // Add cases for other body parts
       default:
         return [];
@@ -94,7 +245,7 @@ export function BodyHuman() {
   };
 
   return (
-    <div className="bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-blue-950 via-blue-900 to-slate-900 py-44">
+    <div className="bg-gradient-to-tr from-primary to-blue-700 py-3">
       <BodyComponent
         onClick={(part: string) => handleClick(part)}
         partsInput={BodyPart}
@@ -102,28 +253,37 @@ export function BodyHuman() {
       {isOpen && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
           <DialogContent>
-            <DialogHeader>
-              <DialogTitle>{selectedPart}?</DialogTitle>
-              <DialogDescription>{description}</DialogDescription>
+            <DialogHeader className="">
+              {description.map((items) => (
+                <DialogTitle className="hidden text-center text-xl underline underline-offset-8">
+                  {items.name}
+                </DialogTitle>
+              ))}
+              <DialogDescription className="hidden text-center">
+                {selectedPart}
+              </DialogDescription>
             </DialogHeader>
-            <div className="mt-4 flex flex-col">
-              {menu.map((item, index, description) => (
+            <div className="flex flex-col space-y-4 text-center">
+              {menu.map((item, index) => (
                 <Link
                   key={index}
                   href={item.action}
-                  className="rounded-l bg-gray-200 px-4 py-2 font-bold text-gray-800 hover:bg-gray-300"
+                  className="rounded-xl border border-primary bg-gray-100 px-4 py-2 font-bold text-gray-800 transition duration-300 hover:bg-primary hover:text-amber-300"
                 >
                   {item.label}
-                  <h3>{item.description}</h3>
+                  <h3 className="text-sm font-normal">{item.description}</h3>
                 </Link>
               ))}
+            </div>
+            <DialogFooter className="sm:justify-start">
               <button
-                className="rounded-l bg-gray-200 px-4 py-2 font-bold text-gray-800 hover:bg-gray-300"
+                className="flex items-center rounded-xl px-4 py-2 font-bold text-gray-800 hover:bg-gray-200"
                 onClick={handleClose}
               >
+                <ArrowLeft className="size-5" />
                 Back
               </button>
-            </div>
+            </DialogFooter>
           </DialogContent>
         </Dialog>
       )}

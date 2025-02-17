@@ -1,6 +1,7 @@
 import { AppLogo } from '@/components/app-logo';
 import { Container } from '@/components/container';
 import { FlagEnglish, FlagIndo } from '@/components/flag';
+import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -13,7 +14,6 @@ import { PageProps } from '@/types';
 import { InertiaLinkProps, Link, usePage } from '@inertiajs/react';
 import { Calendar, Headset, Siren } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Button } from './ui/moving-border';
 
 export function Navbar() {
   const { auth } = usePage<PageProps>().props;
@@ -44,7 +44,7 @@ export function Navbar() {
   }, []);
 
   return (
-    <nav className="sticky top-0 z-50 bg-background/90 backdrop-blur-lg">
+    <nav className="sticky top-0 z-50 hidden bg-background/90 backdrop-blur-lg lg:block">
       <Container>
         {/* <NavbarTop /> */}
         <div className="flex items-center justify-between">
@@ -61,7 +61,7 @@ export function Navbar() {
             </div>
           </Link>
           <div className="flex flex-col space-y-2 p-0">
-            <div className="flex flex-row-reverse">
+            <div className="flex flex-row-reverse pb-2">
               <div className="flex flex-row gap-3 font-bold">
                 <div className="flex cursor-pointer items-center rounded-full underline-offset-8 hover:underline hover:decoration-red-500">
                   <Siren className="size-4 fill-amber-200 stroke-rose-600" />
@@ -82,6 +82,7 @@ export function Navbar() {
               <Navlink current={route().current('home')} href={route('home')}>
                 {__('Home')}
               </Navlink>
+              <Navlink href="#">{__('Doctor')}</Navlink>
               <Navlink
                 current={route().current('excellence')}
                 href={route('excellence')}
@@ -89,10 +90,9 @@ export function Navbar() {
                 {__('Excellence')}
               </Navlink>
               <Navlink href="#">{__('Our services')}</Navlink>
-              <Navlink href="#">{__('Doctor')}</Navlink>
               <Button
-                borderRadius="1.75rem"
-                className="border-neutral-200 bg-white font-black text-primary transition-colors duration-700 hover:bg-primary hover:text-amber-200 hover:shadow-lg"
+                // borderRadius="1.75rem"
+                className="border-neutral-200 bg-white py-7 font-black text-primary transition-colors duration-700 hover:bg-primary hover:text-amber-200 hover:shadow-lg"
               >
                 <Calendar className="mr-2 size-4 stroke-[3px]" />
                 <Link href={route('home')}>{__('Appointment')}</Link>

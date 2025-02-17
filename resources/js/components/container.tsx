@@ -5,5 +5,5 @@ interface Props {
   children: React.ReactNode;
 }
 export function Container({ className, children }: Props) {
-  return <div className={cn('mx-auto px-16 py-2', className)}>{children}</div>;
+  return <div className={cn('mx-auto px-10 py-2', className)}>{children}</div>;
 }

@@ -35,6 +35,12 @@ export function Footer() {
         <div className="space-y-4 text-sm">
           <p className="text-base font-bold tracking-wide">Others</p>
           <div className="underline-offset-8 hover:underline">
+            <Link href="#">{__('Awards and Certifications')}</Link>
+          </div>
+          <div className="underline-offset-8 hover:underline">
+            <Link href="#">{__('Teleconsultation')}</Link>
+          </div>
+          <div className="underline-offset-8 hover:underline">
             <Link href="#">{__('Our services')}</Link>
           </div>
           <div className="underline-offset-8 hover:underline">
@@ -45,9 +51,6 @@ export function Footer() {
           </div>
           <div className="underline-offset-8 hover:underline">
             <Link href="#">{__('FAQs')}</Link>
-          </div>
-          <div className="underline-offset-8 hover:underline">
-            <Link href="#">{__('Teleconsultation')}</Link>
           </div>
         </div>
 
