@@ -11,35 +11,29 @@ class LanguageConversation extends Conversation
     private $languageOptions = [
         'id' => 'Indonesia',
         'en' => 'English',
-        // Tambahkan bahasa lainnya jika perlu
     ];
 
     public function run()
     {
-        $question = Question::create('Bahasa yang digunakan?')->addButtons([
+        $this->say("What language do you use?");
+        $this->say("Bahasa yang kamu gunakan?");
+        $question = Question::create("Please select your language:")->addButtons([
             Button::create('Indonesia')->value('id'),
             Button::create('English')->value('en'),
-            // Tambahkan tombol bahasa lainnya jika perlu
         ]);
 
         $this->ask($question, function ($answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $selectedLanguage = $answer->getValue();
-                // Simpan kode bahasa yang dipilih oleh pengguna
-                // Anda dapat menggunakan metode `say()` untuk menampilkan pesan konfirmasi
-                $this->say('Kamu memilih: ' . $this->languageOptions[$selectedLanguage]);
-
-                // Setelah pengguna memilih bahasa
                 if ($selectedLanguage == 'id') {
-                    // Tampilkan teks dalam bahasa Indonesia
                     $this->say('Selamat datang!');
+                    $this->bot->startConversation(new ServiceIDConversation());
                 } elseif ($selectedLanguage == 'en') {
-                    // Tampilkan teks dalam bahasa Inggris
                     $this->say('Welcome!');
                 }
             } else {
-                $this->say('Pilihan tidak valid. Silakan coba lagi.');
-                $this->run(); // Restart konversasi jika input tidak valid
+                $this->say('Invalid selection. Please try again.<br><br>Pilihan tidak valid. Silakan coba lagi.');
+                $this->run();
             }
         });
     }

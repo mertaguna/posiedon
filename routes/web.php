@@ -19,7 +19,7 @@ Route::middleware('locale')->group(function () {
     Route::get('/excellence', ExcellenceController::class)->name('excellence');
     Route::get('/about', AboutController::class)->name('about');
 
-    Route::get('/dashboard',DashboardController::class)->name('dashboard');
+    Route::get('/dashboard', DashboardController::class)->name('dashboard');
 
     Route::middleware('auth')->group(function () {
         Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
@@ -27,5 +27,7 @@ Route::middleware('locale')->group(function () {
         Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
     });
 
-    require __DIR__.'/auth.php';
+    Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
+
+    require __DIR__ . '/auth.php';
 });

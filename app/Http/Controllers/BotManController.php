@@ -11,6 +11,13 @@ class BotManController extends Controller
         $bot = app('botman');
 
         $bot->typesAndWaits(2);
+
+        $bot->fallback('Sorry, i cannot understand, please try again');
+
+        $bot->hears('hello|hi|halo|hallo|hai', function ($bot) {
+            $bot->startConversation(new LanguageConversation());
+        });
+
         $doctorsSchedule = [
             'Anak' => [
                 'A' => '08:00 - 12:00',
@@ -69,11 +76,6 @@ class BotManController extends Controller
             $bot->reply($response);
             $bot->typesAndWaits(1);
             $bot->reply('Kamu bisa klik <a href="http://127.0.0.1:8001/about" target="_blank">di sini</a> untuk informasi lebih lanjut.');
-        });
-
-
-        $bot->hears('language', function ($bot) {
-            $bot->startConversation(new LanguageConversation());
         });
 
         $bot->listen();
