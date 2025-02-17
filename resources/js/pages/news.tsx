@@ -46,10 +46,10 @@ export default function News() {
   return (
     <Container>
       <section className="px-6 py-12">
-        <div className="flex flex-row">
-          <div className="w-1/3">
+        <div className="flex flex-col lg:flex-row">
+          <div className="mb-4 text-center lg:w-1/3 lg:text-start">
             <h2 className="text-3xl">News & Healthpedia</h2>
-            <p className="mb-6 mr-10 mt-2 text-lg text-gray-400">
+            <p className="mb-6 mt-2 text-lg text-gray-400 lg:mr-10">
               Find useful health information for your healthier life through our
               blog articles.
             </p>
@@ -60,8 +60,8 @@ export default function News() {
               View All Article →
             </a>
           </div>
-          <div className="flex w-5/6 flex-col">
-            <div className="mb-4 space-x-4">
+          <div className="flex flex-col lg:w-5/6">
+            <div className="mb-4 hidden space-x-4 lg:block">
               <Button variant={'bordered'} size={'xl'}>
                 All News
               </Button>
@@ -88,7 +88,7 @@ export default function News() {
             >
               <CarouselContent>
                 {articles.map((article, index) => (
-                  <CarouselItem key={index} className="basis-1/4">
+                  <CarouselItem key={index} className="lg:basis-1/4">
                     <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
                       <img
                         src={article.image}

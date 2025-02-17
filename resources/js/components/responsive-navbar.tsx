@@ -46,7 +46,7 @@ export default function ResponsiveNavbar() {
           <h3 className="ml-2 text-xs text-rose-600">+62 812 5286 6162</h3>
         </div>
       </div>
-      <nav className="sticky top-0 block bg-background/95 px-4 py-4 backdrop-blur-2xl lg:hidden">
+      <nav className="sticky top-0 z-50 block bg-background/95 px-4 py-4 backdrop-blur-2xl lg:hidden">
         <div className="flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center">
@@ -91,7 +91,7 @@ export default function ResponsiveNavbar() {
               <SheetTrigger>
                 <Menu />
               </SheetTrigger>
-              <SheetContent side={'top'}>
+              <SheetContent side={'bottom'}>
                 <SheetHeader>
                   <SheetTitle>Emergency</SheetTitle>
                   <SheetDescription>

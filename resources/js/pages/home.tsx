@@ -50,31 +50,31 @@ export default function Home() {
             <path d="M50 0H100L50 100H0L50 0Z" />
           </svg>
           <img
-            className="h-56 w-full rounded object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none"
+            className="h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none"
             src="https://res.cloudinary.com/dv1uabtoz/image/upload/v1739253540/GARBA/FASILITAS/garba%20foto.jpg"
             alt=""
           />
         </div>
         <div className="relative mx-auto flex w-full max-w-xl flex-col items-center lg:max-w-screen-2xl lg:items-start">
-          <div className="ml-10 text-center lg:my-40 lg:max-w-lg lg:pr-5 lg:text-start">
+          <div className="my-10 text-center lg:my-40 lg:ml-10 lg:max-w-lg lg:pr-5 lg:text-start">
             <div className="mb-5 hidden lg:block">
               <OurDoctor />
             </div>
 
-            <h1 className="font-sans text-5xl font-extrabold leading-snug tracking-normal text-foreground [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)]">
+            <h1 className="font-sans text-4xl font-extrabold leading-snug tracking-normal text-foreground [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)] lg:text-5xl">
               {__('Your Health')}
             </h1>
 
-            <h1 className="mb-4 font-sans text-4xl tracking-normal text-foreground">
+            <h1 className="mb-4 font-sans text-2xl tracking-normal text-foreground lg:text-4xl">
               {__('is Our Top Priority')}
             </h1>
 
-            <p className="mb-8 pr-5 text-foreground text-gray-700 md:text-lg">
+            <p className="mb-8 px-5 text-foreground text-gray-700 md:text-lg lg:px-0 lg:pr-5">
               {__(
                 'We are committed to providing the best possible care for our patients.',
               )}
             </p>
-            <div className="flex items-center justify-center lg:justify-start">
+            <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-start">
               <Button className="rounded-2xl px-9 py-7 font-extrabold text-amber-200 shadow-lg">
                 <Calendar className="stroke-[3px]" />
                 {__('Appointment')}
@@ -88,7 +88,7 @@ export default function Home() {
         </div>
       </div>
       <News />
-      <h1 className="pt-5 text-xl tracking-tight sm:text-center sm:text-2xl">
+      <h1 className="pt-5 text-center text-xl tracking-tight sm:text-2xl">
         Partnership
       </h1>
       <MovingCardsPartner />

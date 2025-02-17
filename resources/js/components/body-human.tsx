@@ -252,7 +252,7 @@ export function BodyHuman() {
       />
       {isOpen && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent>
+          <DialogContent className="">
             <DialogHeader className="">
               {description.map((items) => (
                 <DialogTitle className="hidden text-center text-xl underline underline-offset-8">

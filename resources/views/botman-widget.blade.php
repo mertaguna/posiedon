@@ -9,8 +9,8 @@
         headerTextColor: '#fff',
         desktopHeight: 450,
         desktopWidth: 370,
-        mobileHeight: "50%",
-        mobileWidth: "50%",
+        mobileHeight: "100%",
+        mobileWidth: "100%",
     };
 </script>
 <script src="{{ asset('js/widget.js') }}"></script>
