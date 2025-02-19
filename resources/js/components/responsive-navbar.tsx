@@ -93,23 +93,75 @@ export default function ResponsiveNavbar() {
               </SheetTrigger>
               <SheetContent side={'bottom'}>
                 <SheetHeader>
-                  <SheetTitle>Emergency</SheetTitle>
+                  <SheetTitle className="border-b border-primary pb-2 text-xl font-bold">
+                    Menu
+                  </SheetTitle>
                   <SheetDescription>
                     <div className="flex flex-col items-center"></div>
                   </SheetDescription>
-                  <div className="flex flex-col items-center">
-                    {/* <link href={route('home')}>{__('Home')}</link>
-                  <link href="#">{__('Doctor')}</link>
-                  <link href={route('excellence')}>{__('Excellence')}</link>
-                  <link href="#">{__('Our services')}</link> */}
-                    <Button>
-                      <Link href={route('home')}>{__('Appointment')}</Link>
-                    </Button>
-                    <Button>
-                      <Link href={route('excellence')}>{__('Excellence')}</Link>
-                    </Button>
-                  </div>
                 </SheetHeader>
+                <div className="flex flex-col items-center gap-4 pb-16 pt-4">
+                  <Button
+                    variant={'ghost'}
+                    className="w-full px-0 py-6"
+                    asChild
+                  >
+                    <Link
+                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                      href={route('home')}
+                    >
+                      {__('Home')}
+                    </Link>
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    className="w-full px-0 py-6"
+                    asChild
+                  >
+                    <Link
+                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                      href="#"
+                    >
+                      {__('Doctor')}
+                    </Link>
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    className="w-full px-0 py-6"
+                    asChild
+                  >
+                    <Link
+                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                      href={route('excellence')}
+                    >
+                      {__('Excellence')}
+                    </Link>
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    className="w-full px-0 py-6"
+                    asChild
+                  >
+                    <Link
+                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                      href={route('home')}
+                    >
+                      {__('Our services')}
+                    </Link>
+                  </Button>
+                  <Button
+                    variant={'ghost'}
+                    className="w-full px-0 py-6"
+                    asChild
+                  >
+                    <Link
+                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                      href={route('home')}
+                    >
+                      {__('FAQs')}
+                    </Link>
+                  </Button>
+                </div>
               </SheetContent>
             </Sheet>
           </div>

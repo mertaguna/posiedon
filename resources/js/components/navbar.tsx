@@ -90,9 +90,10 @@ export function Navbar() {
                 {__('Excellence')}
               </Navlink>
               <Navlink href="#">{__('Our services')}</Navlink>
+
               <Button
                 // borderRadius="1.75rem"
-                className="border-neutral-200 bg-white py-7 font-black text-primary transition-colors duration-700 hover:bg-primary hover:text-amber-200 hover:shadow-lg"
+                className="rounded-2xl bg-white py-7 font-black text-primary transition-colors duration-300 hover:bg-primary hover:text-amber-200 hover:shadow-lg"
               >
                 <Calendar className="mr-2 size-4 stroke-[3px]" />
                 <Link href={route('home')}>{__('Appointment')}</Link>

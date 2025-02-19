@@ -11,6 +11,7 @@ import { BodyComponent } from '@darshanpatel2608/human-body-react';
 import { Link } from '@inertiajs/react';
 import { ArrowLeft } from 'lucide-react';
 import { useState } from 'react';
+import { Card } from './ui/card';
 
 const BodyPart = {};
 
@@ -252,38 +253,43 @@ export function BodyHuman() {
       />
       {isOpen && (
         <Dialog open={isOpen} onOpenChange={setIsOpen}>
-          <DialogContent className="">
-            <DialogHeader className="">
-              {description.map((items) => (
-                <DialogTitle className="hidden text-center text-xl underline underline-offset-8">
-                  {items.name}
-                </DialogTitle>
-              ))}
-              <DialogDescription className="hidden text-center">
-                {selectedPart}
-              </DialogDescription>
-            </DialogHeader>
-            <div className="flex flex-col space-y-4 text-center">
-              {menu.map((item, index) => (
-                <Link
-                  key={index}
-                  href={item.action}
-                  className="rounded-xl border border-primary bg-gray-100 px-4 py-2 font-bold text-gray-800 transition duration-300 hover:bg-primary hover:text-amber-300"
+          <DialogContent className="border-none bg-transparent shadow-none">
+            <Card className="p-9">
+              <DialogHeader className="">
+                {description.map((items, index) => (
+                  <DialogTitle
+                    key={index}
+                    className="hidden text-center text-xl underline underline-offset-8"
+                  >
+                    {items.name}
+                  </DialogTitle>
+                ))}
+                <DialogDescription className="hidden text-center">
+                  {selectedPart}
+                </DialogDescription>
+              </DialogHeader>
+              <div className="flex flex-col space-y-4 text-center">
+                {menu.map((item, index) => (
+                  <Link
+                    key={index}
+                    href={item.action}
+                    className="rounded-xl border border-primary bg-gray-100 px-4 py-2 font-bold text-gray-800 transition duration-300 hover:bg-primary hover:text-amber-300"
+                  >
+                    {item.label}
+                    <h3 className="text-sm font-normal">{item.description}</h3>
+                  </Link>
+                ))}
+              </div>
+              <DialogFooter className="mt-4 sm:justify-start">
+                <button
+                  className="flex items-center rounded-xl px-4 py-2 font-bold text-gray-800 hover:bg-gray-200"
+                  onClick={handleClose}
                 >
-                  {item.label}
-                  <h3 className="text-sm font-normal">{item.description}</h3>
-                </Link>
-              ))}
-            </div>
-            <DialogFooter className="sm:justify-start">
-              <button
-                className="flex items-center rounded-xl px-4 py-2 font-bold text-gray-800 hover:bg-gray-200"
-                onClick={handleClose}
-              >
-                <ArrowLeft className="size-5" />
-                Back
-              </button>
-            </DialogFooter>
+                  <ArrowLeft className="size-5" />
+                  Back
+                </button>
+              </DialogFooter>
+            </Card>
           </DialogContent>
         </Dialog>
       )}

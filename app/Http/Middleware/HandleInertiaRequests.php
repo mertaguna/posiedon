@@ -2,6 +2,7 @@
 
 namespace App\Http\Middleware;
 
+use App\Models\Category;
 use Illuminate\Http\Request;
 use Inertia\Middleware;
 use Tighten\Ziggy\Ziggy;
@@ -30,6 +31,8 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
+        $categoriesHome = Category::select('name', 'slug')->get();
+
         return [
             ...parent::share($request),
             'auth' => [
@@ -39,7 +42,9 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
+            'categories_home' => $categoriesHome,
             'language' => fn() => translations(base_path('lang/'.app()->getLocale().'.json')),
+
         ];
     }
 }

@@ -7,7 +7,8 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import { Link } from '@inertiajs/react';
+import { PageProps } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
 import { ArrowRight } from 'lucide-react';
 
 const articles = [
@@ -42,7 +43,8 @@ const articles = [
     image: 'https://picsum.photos/300/200?random=6',
   },
 ];
-export default function News() {
+export default function News({}) {
+  const { categories_home } = usePage<PageProps>().props;
   return (
     <Container>
       <section className="px-6 py-12">
@@ -62,24 +64,19 @@ export default function News() {
           </div>
           <div className="flex flex-col lg:w-5/6">
             <div className="mb-4 hidden space-x-4 lg:block">
-              <Button variant={'bordered'} size={'xl'}>
-                All News
-              </Button>
-              <Button variant={'bordered'} size={'xl'}>
-                Healthy Lifestyle
-              </Button>
-              <Button variant={'bordered'} size={'xl'}>
-                Mental Health
-              </Button>
-              <Button variant={'bordered'} size={'xl'}>
-                General Health
-              </Button>
-              <Button variant={'bordered'} size={'xl'}>
-                Beauty
-              </Button>
-              <Button variant={'bordered'} size={'xl'}>
-                Mother and Child
-              </Button>
+              {categories_home.map((category) => (
+                <Button
+                  className="rounded-full text-sm"
+                  key={category.id}
+                  variant={'bordered'}
+                  size={'xl'}
+                  asChild
+                >
+                  <Link href={route('categories.show', category.slug)}>
+                    {category.name}
+                  </Link>
+                </Button>
+              ))}
             </div>
             <Carousel
               opts={{
@@ -99,7 +96,7 @@ export default function News() {
                         <p className="text-sm text-gray-500">{article.date}</p>
                         <div className="mt-1 text-lg font-semibold">
                           <Link
-                            href="#"
+                            href={route('article')}
                             className="flex flex-col text-primary hover:text-primary/80"
                           >
                             {article.title}

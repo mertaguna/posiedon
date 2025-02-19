@@ -1,4 +1,5 @@
 import { MovingCardsPartner } from '@/components/moving-card';
+import News from '@/components/news';
 import { OurDoctor } from '@/components/our-doctor';
 import { Button } from '@/components/ui/button';
 
@@ -13,11 +14,10 @@ import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
 import { Head } from '@inertiajs/react';
 import { ArrowRightIcon, Calendar, Rocket } from 'lucide-react';
-import News from './news';
 
 export default function Home() {
   return (
-    <AppLayout>
+    <>
       <Head title={__('Home')} />
       <div className="relative flex flex-col-reverse lg:flex-col lg:py-16 lg:pb-0 lg:pt-0">
         <div className="inset-y-0 right-0 top-0 z-0 mx-auto w-full max-w-xl px-2 py-6 md:px-0 lg:absolute lg:mx-0 lg:mb-0 lg:w-7/12 lg:max-w-full lg:py-0 lg:pr-0 xl:px-0">
@@ -69,15 +69,15 @@ export default function Home() {
               {__('is Our Top Priority')}
             </h1>
 
-            <p className="mb-8 px-5 text-foreground text-gray-700 md:text-lg lg:px-0 lg:pr-5">
+            <p className="mb-8 px-5 md:text-lg lg:px-0 lg:pr-5">
               {__(
-                'We are committed to providing the best possible care for our patients.',
+                'We are committed to providing the best possible care for our patients',
               )}
             </p>
             <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-start">
               <Button className="rounded-2xl px-9 py-7 font-extrabold text-amber-200 shadow-lg">
                 <Calendar className="stroke-[3px]" />
-                {__('Appointment')}
+                <div>{__('Appointment')}</div>
               </Button>
               <Button variant={'link'} className="rounded-2xl px-9 py-6">
                 {__('Our services')}
@@ -92,6 +92,8 @@ export default function Home() {
         Partnership
       </h1>
       <MovingCardsPartner />
-    </AppLayout>
+    </>
   );
 }
+
+Home.layout = (page: any) => <AppLayout children={page} />;
