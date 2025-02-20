@@ -30,8 +30,10 @@ class LanguageConversation extends Conversation
                     $this->bot->startConversation(new ServiceIDConversation());
                 } elseif ($selectedLanguage == 'en') {
                     $this->say('Welcome!');
+                    $this->bot->startConversation(new ServiceENConversation());
                 }
             } else {
+                $this->bot->typesAndWaits(2);
                 $this->say('Invalid selection. Please try again.<br><br>Pilihan tidak valid. Silakan coba lagi.');
                 $this->run();
             }

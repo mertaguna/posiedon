@@ -6,33 +6,33 @@ use BotMan\BotMan\Messages\Conversations\Conversation;
 use BotMan\BotMan\Messages\Outgoing\Actions\Button;
 use BotMan\BotMan\Messages\Outgoing\Question;
 
-class ServiceIDConversation extends Conversation
+class ServiceENConversation extends Conversation
 {
     public function run()
     {
         $this->bot->typesAndWaits(2);
-        $question = Question::create("Ada yang bisa kami bantu?")->addButtons([
-            Button::create('Cek Jadwal Dokter')->value('cari-dokter'),
+        $question = Question::create("How can i help you today?")->addButtons([
+            Button::create('Check Doctor`s Schedule')->value('cari-dokter'),
             Button::create('FAQs')->value('faq'),
-            Button::create('Selesai')->value('selesai'),
+            Button::create('End Conversation')->value('selesai'),
         ]);
 
         $this->ask($question, function ($answer) {
             if ($answer->isInteractiveMessageReply()) {
                 $value = $answer->getValue();
                 if ($value == 'cari-dokter') {
-                    $this->say('Kami bisa membantu anda dengan itu');
+                    $this->say('We can help you with that');
                     $this->bot->typesAndWaits(2);
-                    $this->say('Kamu bisa klik <a href="http://127.0.0.1:8000/about" target="_blank">di sini</a> untuk informasi lebih lanjut mengenai jadwal dokter.');
+                    $this->say('You can click <a href="http://127.0.0.1:8000/about" target="_blank">here</a> for more information.');
                     $this->bot->typesAndWaits(2);
                     $this->bot->startConversation(new ServiceIDConversation());
                 } elseif ($value == 'faq') {
-                    $this->say('Anda memilih menu FAQs');
+                    $this->say('You choose menu: FAQs');
                     $this->bot->typesAndWaits(2);
                     $this->bot->startConversation(new ServiceIDConversation());
                 } elseif ($value == 'selesai') {
                     $this->bot->typesAndWaits(2);
-                    $this->say('Terima kasih telah menggunakan layanan kami');
+                    $this->say('Thank you for using our service');
                 }
             } else {
                 $this->bot->typesAndWaits(2);
