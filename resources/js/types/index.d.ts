@@ -7,11 +7,16 @@ export interface User {
     email_verified_at?: string;
 }
 
-interface Category {
+export interface Article {
     id: number;
-    name: string;
-    slug: string;
-  }
+    title: string
+    slug: string
+    teaser: string
+    created_at: string
+    author: string
+    picture: string
+}
+
 
 export type PageProps<
     T extends Record<string, unknown> = Record<string, unknown>,
@@ -19,6 +24,8 @@ export type PageProps<
     auth: {
         user: User;
     };
-    categories_home: Category[];
+    articles: {
+        article: Article;
+    };
     ziggy: Config & { location: string };
 };

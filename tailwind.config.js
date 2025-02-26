@@ -1,5 +1,10 @@
 import forms from '@tailwindcss/forms';
+import svgToTinyDataUri from 'mini-svg-data-uri';
 import defaultTheme from 'tailwindcss/defaultTheme';
+
+const {
+  default: flattenColorPalette,
+} = require('tailwindcss/lib/util/flattenColorPalette');
 
 /** @type {import('tailwindcss').Config} */
 export default {
@@ -77,5 +82,24 @@ export default {
     },
   },
 
-  plugins: [forms, require('tailwindcss-animate')],
+  plugins: [
+    forms,
+    require('tailwindcss-animate'),
+    require('@tailwindcss/typography'),
+    function ({ matchUtilities, theme }) {
+      matchUtilities(
+        {
+          'bg-pattern': (value) => ({
+            backgroundImage: `url("${svgToTinyDataUri(
+              `<svg xmlns="http://www.w3.org/2000/svg"><defs><pattern id="a" width="72" height="43.875" patternTransform="rotate(135)scale(4)" patternUnits="userSpaceOnUse"><rect width="100%" height="100%" fill="${value}"/><path fill="none" stroke="#f8fafc" stroke-width="1.5" d="m14.296 7.185 7.236 7.234L36.002-.048l14.47 14.47 7.236-7.233L36-14.518Zm-7.275 7.251 7.258 7.26 7.259-7.26-7.258-7.259zm-28.798 14.76 7.237 7.237L-.023 21.916 14.452 36.39l7.26-7.258L0 7.42Zm50.746 7.193-7.258-7.258-7.26 7.258 7.26 7.26zm57.568.046 7.24-7.238L72 7.42 50.282 29.137l7.259 7.259L72.02 21.918Zm-28.993-.042-7.26-7.258-7.258 7.258 7.26 7.26zm.233 14.742L36 29.358 14.223 51.135l7.258 7.258L36 43.875l14.518 14.517ZM50.453 14.45l7.259 7.26 7.258-7.26-7.258-7.257z"/></pattern></defs><rect width="800%" height="800%" fill="url(#a)" transform="translate(0 -123)"/></svg>`,
+            )}")`,
+          }),
+        },
+        {
+          values: flattenColorPalette(theme('backgroundColor')),
+          type: 'color',
+        },
+      );
+    },
+  ],
 };

@@ -31,7 +31,11 @@ class HandleInertiaRequests extends Middleware
      */
     public function share(Request $request): array
     {
-        $categoriesHome = Category::select('name', 'slug')->get();
+
+        $categoriesHome = Category::query()
+            ->select('name', 'slug')
+            // ->whereHas('articles')
+            ->get();
 
         return [
             ...parent::share($request),
@@ -42,7 +46,7 @@ class HandleInertiaRequests extends Middleware
                 ...(new Ziggy)->toArray(),
                 'location' => $request->url(),
             ],
-            'categories_home' => $categoriesHome,
+            'categories_home' => cache()->remember('categories_home', 3600, fn() => $categoriesHome),
             'language' => fn() => translations(base_path('lang/'.app()->getLocale().'.json')),
 
         ];

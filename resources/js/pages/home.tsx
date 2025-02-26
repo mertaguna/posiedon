@@ -1,8 +1,7 @@
+import { Container } from '@/components/container';
 import { MovingCardsPartner } from '@/components/moving-card';
-import News from '@/components/news';
 import { OurDoctor } from '@/components/our-doctor';
 import { Button } from '@/components/ui/button';
-
 import {
   Card,
   CardDescription,
@@ -10,12 +9,25 @@ import {
   CardHeader,
   CardTitle,
 } from '@/components/ui/card';
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+} from '@/components/ui/carousel';
 import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
-import { Head } from '@inertiajs/react';
+import { PageProps } from '@/types';
+import { Head, Link } from '@inertiajs/react';
 import { ArrowRightIcon, Calendar, Rocket } from 'lucide-react';
+import { useState } from 'react';
 
-export default function Home() {
+export default function Home({ articles, categories_home }: PageProps) {
+  const [imageLoaded, setImageLoaded] = useState(false);
+  //   console.log(articles);
+  const artikel = Object.values(articles);
+  //   console.log(artikel);
   return (
     <>
       <Head title={__('Home')} />
@@ -87,7 +99,63 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <News />
+
+      <Container className="mx-4 py-12">
+        <div className="flex flex-col lg:flex-row">
+          <div className="mb-4 text-center lg:w-1/3 lg:text-start">
+            <h2 className="text-3xl">News & Healthpedia</h2>
+            <p className="mb-6 mt-2 text-lg text-gray-400 lg:mr-10">
+              Find useful health information for your healthier life through our
+              blog articles.
+            </p>
+            <a
+              href="#"
+              className="font-semibold text-primary underline-offset-8 hover:underline"
+            >
+              View All Article →
+            </a>
+          </div>
+          <div className="flex flex-col lg:w-5/6">
+            <Carousel
+              opts={{
+                align: 'start',
+              }}
+            >
+              <CarouselContent>
+                {artikel.map((item) => (
+                  <CarouselItem className="lg:basis-1/4" key={item.slug}>
+                    <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
+                      <Link href={route('article.show', item.slug)}>
+                        <img
+                          src={item.picture}
+                          alt={item.picture}
+                          className="h-56 w-full object-cover"
+                        />
+                      </Link>
+                      <div className="p-4">
+                        <p className="text-sm text-gray-500">
+                          {item.created_at}
+                        </p>
+                        <div className="mt-1 text-lg font-semibold">
+                          <Link
+                            href={route('article.show', item.slug)}
+                            className="flex flex-col text-primary hover:text-primary/80"
+                          >
+                            <p className="line-clamp-2">{item.title}</p>
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </CarouselItem>
+                ))}
+              </CarouselContent>
+              <CarouselPrevious className="bg-primary text-amber-200 hover:bg-primary/70 hover:text-amber-200" />
+              <CarouselNext className="bg-primary text-amber-200 hover:bg-primary/70 hover:text-amber-200" />
+            </Carousel>
+          </div>
+        </div>
+      </Container>
+
       <h1 className="pt-5 text-center text-xl tracking-tight sm:text-2xl">
         Partnership
       </h1>
