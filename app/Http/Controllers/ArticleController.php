@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSingleResource;
 use App\Http\Resources\ArticleTableResource;
@@ -85,15 +86,7 @@ class ArticleController extends Controller implements HasMiddleware
         ]);
     }
 
-    public function store (Request $request){
-        $request->validate([
-            'picture' => ['required', 'mimes:png,jpg,jpeg', 'image'],
-            'title'   => ['required', 'string', 'min:3'],
-            'teaser'  => ['required', 'string', 'min:3'],
-            'body'    => ['required', 'string', 'min:3'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'tags'    => ['required', 'array'],
-        ]);
+    public function store (ArticleRequest $request){
         $picture = $request->picture;
         $article= $request->user()->articles()->create([
             'title' => $title = $request->title,
@@ -118,16 +111,8 @@ class ArticleController extends Controller implements HasMiddleware
         ]);
     }
 
-    public function update (Request $request, Article $article){
+    public function update (ArticleRequest $request, Article $article){
         // dd($request->all());
-        $request->validate([
-            'picture' => ['nullable', 'mimes:png,jpg,jpeg', 'image'],
-            'title'   => ['required', 'string', 'min:3'],
-            'teaser'  => ['required', 'string', 'min:3'],
-            'body'    => ['required', 'string', 'min:3'],
-            'category_id' => ['required', 'exists:categories,id'],
-            'tags'    => ['required', 'array'],
-        ]);
         $picture = $request->picture;
         $article->update([
             'title' =>  $request->title,
