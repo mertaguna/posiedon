@@ -31,7 +31,6 @@ class BotManController extends Controller
             ],
         ];
 
-        // Create a lowercase version of the array for internal processing
         $lowercaseDoctorsSchedule = [];
         foreach ($doctorsSchedule as $poli => $doctors) {
             $lowercaseDoctorsSchedule[strtolower($poli)] = [];
@@ -40,7 +39,6 @@ class BotManController extends Controller
             }
         }
 
-        // Mendengarkan perintah untuk poli
         $bot->hears('(.*)poli {poli}', function ($bot, $poli) use ($doctorsSchedule, $lowercaseDoctorsSchedule) {
             $poli = strtolower($poli); // Convert input to lowercase
             if (array_key_exists($poli, $lowercaseDoctorsSchedule)) {
