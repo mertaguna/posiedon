@@ -15,24 +15,33 @@ import {
   DropdownMenuShortcut,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
-import { Link } from '@inertiajs/react';
-import { ArrowUpRightFromSquare, Calendar, Hash, Share2 } from 'lucide-react';
+import { Head, Link } from '@inertiajs/react';
+import { ArrowUpRightFromSquare, Share2 } from 'lucide-react';
 import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 export default function Show(props: any) {
   const { data: article, related: articles } = props.article;
-  //   console.log(article);
-  //   const artikel = Object.values(articles);
+  console.log(articles);
   const [imageLoaded, setImageLoaded] = useState(false);
+  const [relatedImageLoaded, setRelatedImageLoaded] = useState<boolean[]>([]);
 
   useEffect(() => {
     const img = new Image();
     img.src = article.picture;
     img.onload = () => setImageLoaded(true);
-  }, []);
+  }, [article.picture]);
+
+  const handleRelatedImageLoad = (index: number) => {
+    setRelatedImageLoaded((prev) => {
+      const newImageLoaded = [...prev];
+      newImageLoaded[index] = true;
+      return newImageLoaded;
+    });
+  };
 
   return (
     <>
+      <Head title="Article" />
       <ArticleHeader title={article.title} />
       <Container className="px-4 md:px-8 lg:px-36">
         <div className="flex flex-col-reverse lg:flex-row-reverse lg:gap-10">
@@ -52,7 +61,7 @@ export default function Show(props: any) {
           <div className="w-full lg:w-1/2">
             <div className="flex h-full flex-col justify-between">
               <div>
-                <h3 className="pb-4">
+                <h3 className="mt-2 lg:mt-0 lg:pb-4">
                   <Link
                     href={route('categories.show', article.category.slug)}
                     className="text-md font-medium underline-offset-8 hover:underline"
@@ -60,7 +69,7 @@ export default function Show(props: any) {
                     {article.category.name}
                   </Link>
                 </h3>
-                <h1 className="mb-2 mt-4 text-2xl font-bold leading-tight text-gray-900 md:text-4xl lg:mt-0 lg:text-5xl">
+                <h1 className="mb-2 mt-2 text-2xl font-black md:text-4xl lg:mt-0 lg:text-5xl">
                   {article.title}
                 </h1>
                 <div className="pt-3">{article.created_at}</div>
@@ -86,8 +95,7 @@ export default function Show(props: any) {
                           key={tag.slug}
                           href={route('tags.show', tag.slug)}
                         >
-                          <Hash className="inline-block size-3" />
-                          {tag.name}
+                          #{tag.name}
                         </Link>
                       ))}
                     </div>
@@ -150,93 +158,39 @@ export default function Show(props: any) {
           </div>
           <div className="lg:basis-2/6">
             <div className="sticky top-28 flex w-full flex-col items-stretch justify-center">
-              <div className="mb-4 border-b-2 pb-2 text-start text-2xl font-semibold">
-                Artikel Terkait
+              <div className="mb-4 border-b-2 pb-2 text-start text-2xl font-medium">
+                Related Article
               </div>
               <div className="flex flex-col gap-6 border-b-2 border-gray-100 pb-6">
                 {articles.length ? (
-                  <ul className="space-y-2">
-                    {articles.map((article: any) => (
-                      <li key={article.slug}>
-                        <Link href={route('article.show', article.slug)}>
-                          {article.title}
-                        </Link>
-                      </li>
+                  <ul className="space-y-4">
+                    {articles.map((relatedArticle: any, index: number) => (
+                      <Link href={route('article.show', relatedArticle.slug)}>
+                        <li
+                          key={relatedArticle.slug}
+                          className="flex gap-4 py-4"
+                        >
+                          <div className="w-32 flex-none">
+                            {!relatedImageLoaded[index] && (
+                              <Skeleton className="h-24 rounded-xl object-cover" />
+                            )}
+                            <img
+                              className={`rounded-xl object-cover ${relatedImageLoaded[index] ? 'block' : 'hidden'}`}
+                              src={relatedArticle.picture}
+                              alt={relatedArticle.title}
+                              onLoad={() => handleRelatedImageLoad(index)}
+                            />
+                          </div>
+                          <div className="underline-offset-2 hover:underline">
+                            {relatedArticle.title}
+                          </div>
+                        </li>
+                      </Link>
                     ))}
                   </ul>
-                ) : null}
-
-                <div className="flex gap-3">
-                  <div className="flex flex-col items-center justify-center">
-                    <img
-                      className="max-w-44 rounded-xl object-cover"
-                      src="https://picsum.photos/1200/700"
-                      alt="Article Image"
-                    />
-                  </div>
-
-                  <div className="flex flex-col justify-between">
-                    <div className="flex gap-2 text-sm font-semibold text-gray-700 md:gap-4">
-                      <span className="flex items-center gap-1">
-                        Kesehatan Tubuh
-                      </span>
-                    </div>
-
-                    <h3 className="chelsea-market-regular line-clamp-2 text-xl font-semibold capitalize text-teal-900">
-                      Bronkokonstriksi, Ketahui Penyebab dan Bahayanya Sebelum
-                      Terlambat!
-                    </h3>
-
-                    <p className="text-md text-gray-500">16 januari 2025</p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="mb-4 pt-4 text-start text-2xl font-semibold">
-                Dokter Kami
-              </div>
-              <div className="flex flex-col gap-6 border-b-2 border-gray-100">
-                <div className="flex gap-3">
-                  <div className="flex w-full flex-col justify-between">
-                    <div className="flex items-center gap-4">
-                      <Avatar>
-                        <AvatarImage src="https://github.com/mertaguna.png" />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <div className="flex flex-col">
-                        <div className="font-bold">Spesialis Kulit Kelamin</div>
-                        <div className="">dr. Albertus Daniel, SpPD</div>
-                      </div>
-                    </div>
-                    <Button variant={'bordered'} className="mt-5 w-48">
-                      <Link href="#" className="flex items-center gap-3">
-                        Booking
-                        <Calendar />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
-
-                <div className="flex gap-3">
-                  <div className="flex w-full flex-col justify-between">
-                    <div className="flex items-center gap-4">
-                      <Avatar>
-                        <AvatarImage src="https://github.com/ambarayasa.png" />
-                        <AvatarFallback>CN</AvatarFallback>
-                      </Avatar>
-                      <div className="flex flex-col">
-                        <div className="font-bold">Spesialis Kulit Kelamin</div>
-                        <div className="">dr. Albertus Daniel, SpPD</div>
-                      </div>
-                    </div>
-                    <Button variant={'bordered'} className="mt-5 w-48">
-                      <Link href="#" className="flex items-center gap-3">
-                        Booking
-                        <Calendar />
-                      </Link>
-                    </Button>
-                  </div>
-                </div>
+                ) : (
+                  <p className="text-gray-500">No related articles found.</p>
+                )}
               </div>
             </div>
           </div>

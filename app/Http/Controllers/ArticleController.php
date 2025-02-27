@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleItemResource;
+use App\Http\Resources\ArticleSimpleResource;
 use App\Http\Resources\ArticleSingleResource;
 use App\Http\Resources\ArticleTableResource;
 use Illuminate\Support\Facades\Storage;
@@ -65,17 +66,17 @@ class ArticleController extends Controller implements HasMiddleware
 
     public function show (Article $article){
         $articles = Article::query()
-            ->select('id', 'title', 'slug')
+            ->select('id', 'title', 'slug', 'picture','created_at')
             ->whereNot('id', $article->id)
             ->whereBelongsTo($article->category)
-            ->limit(10)->get();
+            ->limit(4)->get();
         $currentArticle = $article->load([
             'tags' => fn($query)=> $query->select('name', 'slug'),
             'category' => fn($query)=> $query->select('id', 'name', 'slug'),
         ]);
         return inertia('article/show',[
             'article' => (new ArticleSingleResource($currentArticle))->additional([
-                'related' => $articles,
+                'related' => ArticleSimpleResource::collection($articles),
             ])
         ]);
     }
