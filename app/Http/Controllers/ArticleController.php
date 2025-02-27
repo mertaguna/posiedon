@@ -6,6 +6,7 @@ use App\Http\Requests\ArticleRequest;
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSingleResource;
 use App\Http\Resources\ArticleTableResource;
+use Illuminate\Support\Facades\Storage;
 use App\Models\Article;
 use App\Models\Category;
 use App\Models\Tag;
@@ -123,5 +124,15 @@ class ArticleController extends Controller implements HasMiddleware
         ]);
         $article->tags()->sync($request->tags, true);
         return to_route('article.show', $article);
+    }
+
+    public function destroy ( Article $article){
+        // dd($article->id);
+        if($article->picture){
+            Storage::delete($article->picture);
+        }
+        $article->tags()->detach();
+        $article->delete();
+        return back();
     }
 }

@@ -1,5 +1,6 @@
 import { usePage } from '@inertiajs/react';
 import clsx from 'clsx';
+import { useState } from 'react';
 import Editor from './editor';
 import ErrorField from './error-field';
 import MSelect from './m-select';
@@ -15,7 +16,26 @@ interface ArticleFormProps {
 
 export default function ArticleForm({ data, setData }: ArticleFormProps) {
   const { errors, categories, tags } = usePage().props;
+  console.log(categories);
+  const [imagePreview, setImagePreview] = useState<string | null>(null);
+
   const onchange = (e: any) => setData(e.target.name, e.target.value);
+
+  const handleImageChange = (e: any) => {
+    const file = e.target.files[0];
+    setData('picture', file);
+
+    if (file) {
+      const reader = new FileReader();
+      reader.onloadend = () => {
+        setImagePreview(reader.result as string);
+      };
+      reader.readAsDataURL(file);
+    } else {
+      setImagePreview(null);
+    }
+  };
+
   return (
     <>
       <div className="flex gap-4 pb-4">
@@ -40,13 +60,20 @@ export default function ArticleForm({ data, setData }: ArticleFormProps) {
             id="picture"
             type="file"
             accept=".png, .jpg, .jpeg"
-            onChange={(e: any) => setData('picture', e.target.files[0])}
+            onChange={handleImageChange}
             className={clsx(
               'block w-full rounded-md border-gray-200',
               errors.picture && 'border-red-500',
             )}
           />
           {errors.picture ? <ErrorField value={errors.picture} /> : null}
+          {imagePreview && (
+            <img
+              src={imagePreview}
+              alt="Image Preview"
+              className="mt-2 h-28 w-full rounded-lg object-cover"
+            />
+          )}
         </div>
       </div>
 

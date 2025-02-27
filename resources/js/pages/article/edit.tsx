@@ -88,8 +88,13 @@ export default function Edit({ article }: EditProps) {
                 </div>
                 <div className="w-1/2">
                   <div className="flex p-4">
-                    <div className="w-1/2">{data.title || 'the title..'}</div>
-                    <div className="">picture</div>
+                    <div className="w-1/2 text-lg font-bold">
+                      {data.title || 'the title..'}
+                    </div>
+                    <img
+                      className="max-w-[200px]"
+                      src={`http://127.0.0.1:8000/storage/${article.picture}`}
+                    />
                   </div>
                   <div className="p-4">
                     <h1>{data.teaser || 'the teaser..'}</h1>

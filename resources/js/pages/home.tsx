@@ -16,6 +16,7 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
+import { Skeleton } from '@/components/ui/skeleton';
 import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
 import { PageProps } from '@/types';
@@ -24,10 +25,17 @@ import { ArrowRightIcon, Calendar, Rocket } from 'lucide-react';
 import { useState } from 'react';
 
 export default function Home({ articles, categories_home }: PageProps) {
-  const [imageLoaded, setImageLoaded] = useState(false);
-  //   console.log(articles);
+  const [imageLoaded, setImageLoaded] = useState<boolean[]>([]);
   const artikel = Object.values(articles);
-  //   console.log(artikel);
+
+  const handleImageLoad = (index: number) => {
+    setImageLoaded((prev) => {
+      const newImageLoaded = [...prev];
+      newImageLoaded[index] = true;
+      return newImageLoaded;
+    });
+  };
+
   return (
     <>
       <Head title={__('Home')} />
@@ -54,17 +62,21 @@ export default function Home({ articles, categories_home }: PageProps) {
             </Card>
           </div>
           <svg
-            className="absolute left-0 hidden h-full -translate-x-1/2 transform text-background lg:block"
+            className="absolute left-0 z-10 hidden h-full -translate-x-1/2 transform text-background lg:block"
             viewBox="0 0 100 100"
             fill="currentColor"
             preserveAspectRatio="none slice"
           >
             <path d="M50 0H100L50 100H0L50 0Z" />
           </svg>
+          {!imageLoaded[0] && (
+            <Skeleton className="h-56 w-full rounded-xl md:h-96 lg:h-full lg:rounded-none" />
+          )}
           <img
-            className="h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none"
+            className={`h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none ${imageLoaded[0] ? 'block' : 'hidden'}`}
             src="https://res.cloudinary.com/dv1uabtoz/image/upload/v1739253540/GARBA/FASILITAS/garba%20foto.jpg"
             alt=""
+            onLoad={() => handleImageLoad(0)}
           />
         </div>
         <div className="relative mx-auto flex w-full max-w-xl flex-col items-center lg:max-w-screen-2xl lg:items-start">
@@ -122,14 +134,18 @@ export default function Home({ articles, categories_home }: PageProps) {
               }}
             >
               <CarouselContent>
-                {artikel.map((item) => (
+                {artikel.map((item, index) => (
                   <CarouselItem className="lg:basis-1/4" key={item.slug}>
                     <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
                       <Link href={route('article.show', item.slug)}>
+                        {!imageLoaded[index + 1] && (
+                          <Skeleton className="h-56 w-full object-cover" />
+                        )}
                         <img
                           src={item.picture}
                           alt={item.picture}
-                          className="h-56 w-full object-cover"
+                          className={`h-56 w-full object-cover ${imageLoaded[index + 1] ? 'block' : 'hidden'}`}
+                          onLoad={() => handleImageLoad(index + 1)}
                         />
                       </Link>
                       <div className="p-4">

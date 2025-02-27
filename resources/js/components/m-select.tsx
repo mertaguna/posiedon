@@ -10,7 +10,7 @@ import { Check } from 'lucide-react';
 import { Fragment } from 'react';
 
 interface MSelectProps {
-  data: { id: number; name: string }[];
+  data: { id: number; name: string; slug: string }[];
   value: number;
   onChange: (value: number) => void;
   buttonClassName?: string;

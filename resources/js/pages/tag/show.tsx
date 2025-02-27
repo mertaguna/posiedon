@@ -29,7 +29,7 @@ export default function Show({ tag, ...props }: TagProps) {
 
   return (
     <div>
-      <div className="bg-pattern-white mb-8 grid grid-cols-12 py-11 lg:py-32">
+      <div className="mb-8 grid grid-cols-12 py-11 bg-pattern-white lg:py-32">
         <div className="col-span-12">
           <div className="text-center text-2xl font-bold lg:text-6xl">
             {tag.name}

@@ -1,4 +1,14 @@
 import { Pagination } from '@/components/pagination';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+} from '@/components/ui/alert-dialog';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -17,10 +27,18 @@ import {
   TableHeader,
   TableRow,
 } from '@/components/ui/table';
-
 import Authenticated from '@/Layouts/auth-layout';
-import { Head, Link } from '@inertiajs/react';
-import { Ellipsis, Eraser, PencilLine, Plus } from 'lucide-react';
+import { Head, Link, useForm } from '@inertiajs/react';
+import {
+  BadgeCheckIcon,
+  Ellipsis,
+  Eraser,
+  PencilLine,
+  Plus,
+  Trash,
+} from 'lucide-react';
+import { useState } from 'react';
+import { toast } from 'sonner';
 
 interface ArticleTableProps {
   articles: {
@@ -45,6 +63,34 @@ interface ArticleTableProps {
 
 export default function ArticleTable(props: ArticleTableProps) {
   const { data: articles, meta, links } = props.articles;
+  const [deleteArticleSlug, setDeleteArticleSlug] = useState<string | null>(
+    null,
+  );
+  const [isDialogOpen, setIsDialogOpen] = useState(false);
+  const { delete: destroy } = useForm();
+
+  const handleDelete = () => {
+    if (deleteArticleSlug !== null) {
+      // Panggil route delete
+      destroy(route('article.destroy', deleteArticleSlug), {
+        onSuccess: () => {
+          setDeleteArticleSlug(null);
+          setIsDialogOpen(false);
+          toast('Success!!', {
+            description: 'the article has been deleted',
+            icon: <BadgeCheckIcon />,
+            duration: 5000,
+          });
+        },
+      });
+    }
+  };
+
+  const openDialog = (articleSlug: string) => {
+    setDeleteArticleSlug(articleSlug);
+    setIsDialogOpen(true);
+  };
+
   return (
     <>
       <Head title="Article" />
@@ -105,7 +151,10 @@ export default function ArticleTable(props: ArticleTableProps) {
                                 </DropdownMenuItem>
                               </Link>
                               <DropdownMenuSeparator />
-                              <DropdownMenuItem className="focus:bg-rose-50 focus:text-rose-600">
+                              <DropdownMenuItem
+                                onClick={() => openDialog(article.slug)}
+                                className="focus:bg-rose-50 focus:text-rose-600"
+                              >
                                 <Eraser /> Delete
                               </DropdownMenuItem>
                             </DropdownMenuContent>
@@ -128,6 +177,33 @@ export default function ArticleTable(props: ArticleTableProps) {
           </div>
         </div>
       </div>
+
+      <AlertDialog open={isDialogOpen} onOpenChange={setIsDialogOpen}>
+        <AlertDialogContent>
+          <AlertDialogHeader>
+            <AlertDialogTitle>Are you absolutely sure?</AlertDialogTitle>
+            <AlertDialogDescription>
+              This action cannot be undone. This will permanently delete your
+              article and remove your data from our servers.
+            </AlertDialogDescription>
+          </AlertDialogHeader>
+          <AlertDialogFooter>
+            <AlertDialogCancel
+              className="border-none shadow-none"
+              onClick={() => setIsDialogOpen(false)}
+            >
+              Cancel
+            </AlertDialogCancel>
+            <AlertDialogAction
+              className="hover:bg-rose-600"
+              onClick={handleDelete}
+            >
+              <Trash />
+              Delete
+            </AlertDialogAction>
+          </AlertDialogFooter>
+        </AlertDialogContent>
+      </AlertDialog>
     </>
   );
 }

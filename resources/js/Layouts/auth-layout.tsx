@@ -2,6 +2,7 @@ import { AppLogo } from '@/components/app-logo';
 import Dropdown from '@/components/Dropdown';
 import NavLink from '@/components/NavLink';
 import ResponsiveNavLink from '@/components/ResponsiveNavLink';
+import { Toaster } from '@/components/ui/sonner';
 import { Link, usePage } from '@inertiajs/react';
 import { PropsWithChildren, ReactNode, useState } from 'react';
 
@@ -173,6 +174,7 @@ export default function Authenticated({
       )}
 
       <main>{children}</main>
+      <Toaster theme="system" position="top-center" />
     </div>
   );
 }
