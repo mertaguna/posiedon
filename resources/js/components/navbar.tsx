@@ -82,13 +82,18 @@ export function Navbar() {
               <Navlink current={route().current('home')} href={route('home')}>
                 {__('Home')}
               </Navlink>
-              <Navlink href="#">{__('Doctor')}</Navlink>
               <Navlink
+                current={route().current('specialist.index')}
+                href={route('specialist.index')}
+              >
+                {__('Our Specialist')}
+              </Navlink>
+              {/* <Navlink
                 current={route().current('excellence')}
                 href={route('excellence')}
               >
                 {__('Excellence')}
-              </Navlink>
+              </Navlink> */}
               <Navlink href="#">{__('Our services')}</Navlink>
 
               <Button

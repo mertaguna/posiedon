@@ -23,6 +23,7 @@ import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
 import { ArrowRightIcon, Calendar, Rocket } from 'lucide-react';
 import { useState } from 'react';
+import garbaFoto from '../../../public/assets/image/garba-foto.jpg';
 
 export default function Home({ articles, categories_home }: PageProps) {
   const [imageLoaded, setImageLoaded] = useState<boolean[]>([]);
@@ -74,7 +75,7 @@ export default function Home({ articles, categories_home }: PageProps) {
           )}
           <img
             className={`h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none ${imageLoaded[0] ? 'block' : 'hidden'}`}
-            src="https://res.cloudinary.com/dv1uabtoz/image/upload/v1739253540/GARBA/FASILITAS/garba%20foto.jpg"
+            src={garbaFoto}
             alt=""
             onLoad={() => handleImageLoad(0)}
           />

@@ -69,7 +69,7 @@ class ArticleController extends Controller implements HasMiddleware
             ->select('id', 'title', 'slug', 'picture','created_at')
             ->whereNot('id', $article->id)
             ->whereBelongsTo($article->category)
-            ->limit(4)->get();
+            ->limit(3)->get();
         $currentArticle = $article->load([
             'tags' => fn($query)=> $query->select('name', 'slug'),
             'category' => fn($query)=> $query->select('id', 'name', 'slug'),

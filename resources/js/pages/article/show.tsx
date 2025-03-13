@@ -21,7 +21,7 @@ import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 export default function Show(props: any) {
   const { data: article, related: articles } = props.article;
-  console.log(articles);
+  //   console.log(articles);
   const [imageLoaded, setImageLoaded] = useState(false);
   const [relatedImageLoaded, setRelatedImageLoaded] = useState<boolean[]>([]);
 
@@ -48,10 +48,10 @@ export default function Show(props: any) {
           <div className="w-full rounded-2xl lg:w-1/2">
             <div className="h-full">
               {!imageLoaded && (
-                <Skeleton className="h-[210px] w-full rounded-2xl lg:h-[375px]" />
+                <Skeleton className="h-72 w-full rounded-2xl lg:h-[450px]" />
               )}
               <img
-                className={`w-full rounded-2xl object-cover ${imageLoaded ? 'block' : 'hidden'}`}
+                className={`h-72 w-full rounded-2xl object-cover lg:h-[450px] ${imageLoaded ? 'block' : 'hidden'}`}
                 src={article.picture}
                 alt="Article Image"
               />
@@ -172,10 +172,10 @@ export default function Show(props: any) {
                         >
                           <div className="w-32 flex-none">
                             {!relatedImageLoaded[index] && (
-                              <Skeleton className="h-24 rounded-xl object-cover" />
+                              <Skeleton className="h-24 w-full rounded-xl object-cover" />
                             )}
                             <img
-                              className={`rounded-xl object-cover ${relatedImageLoaded[index] ? 'block' : 'hidden'}`}
+                              className={`h-24 w-full rounded-xl object-cover ${relatedImageLoaded[index] ? 'block' : 'hidden'}`}
                               src={relatedArticle.picture}
                               alt={relatedArticle.title}
                               onLoad={() => handleRelatedImageLoad(index)}
@@ -191,6 +191,43 @@ export default function Show(props: any) {
                 ) : (
                   <p className="text-gray-500">No related articles found.</p>
                 )}
+              </div>
+
+              <div className="w-full flex-col items-stretch justify-center">
+                <div className="mb-4 border-b-2 pb-2 text-start text-2xl font-medium">
+                  Our Doctor
+                </div>
+                <div className="flex flex-col gap-6 border-b-2 border-gray-100 pb-6">
+                  <ul className="space-y-4">
+                    <Link href="#">
+                      <li
+                        key=""
+                        className="flex-col gap-4 rounded-xl bg-white p-6"
+                      >
+                        <div className="flex gap-4">
+                          <div className="w-20 flex-none">
+                            <Avatar className="h-20 w-20">
+                              <AvatarImage src="https://github.com/shadcn.png" />
+                              <AvatarFallback>CN</AvatarFallback>
+                            </Avatar>
+                          </div>
+                          <div className="">
+                            <div className="font-semibold underline-offset-2 hover:underline">
+                              dr. Ni Luh Indri Astari, M.Biomed., SpTHT-KL
+                            </div>
+                            <div className="font-normal">Spesialis THT</div>
+                            <div className="font-light">Praktek Hari ini</div>
+                          </div>
+                        </div>
+                        <div className="mt-4">
+                          <Button className="w-full py-4" variant="bordered">
+                            Book Now
+                          </Button>
+                        </div>
+                      </li>
+                    </Link>
+                  </ul>
+                </div>
               </div>
             </div>
           </div>

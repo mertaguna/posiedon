@@ -4,10 +4,12 @@ use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ExcellenceController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LanguageController;
 use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\SpecialistController;
 use App\Http\Controllers\TagController;
 use Illuminate\Support\Facades\Route;
 
@@ -19,6 +21,10 @@ Route::middleware('locale')->group(function () {
     });
 
     Route::get('/', HomeController::class)->name('home');
+
+    Route::get('doctors', [DoctorController::class, 'index'])->name('doctor.index');
+    Route::get('specialist', [SpecialistController::class, 'index'])->name('specialist.index');
+    Route::get('specialist/{specialist:slug}', [SpecialistController::class, 'show'])->name('specialist.show');
 
     Route::get('categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
     Route::get('tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show');
