@@ -16,7 +16,11 @@ class DoctorSeeder extends Seeder
     {
         $specialists = Specialist::all();
         foreach (['Dr. Smith', 'Dr. Johnson', 'Dr. Brown', 'Dr. Davis'] as $index => $name) {
-            Doctor::create(['name' => $name, 'specialist_id' => $specialists->random()->id]);
+            Doctor::create([
+                'name' => $name,
+                'slug' =>str($name)->slug(),
+                'specialist_id' => $specialists->random()->id
+            ]);
         }
     }
 }

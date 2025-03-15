@@ -81,7 +81,7 @@ class ArticleController extends Controller implements HasMiddleware
         ]);
     }
 
-    public function create (Article $article){
+    public function create (){
         return inertia('article/create',[
             'tags' => $this->tags,
             'categories' => $this->categories,

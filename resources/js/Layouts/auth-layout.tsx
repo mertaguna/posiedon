@@ -40,6 +40,12 @@ export default function Authenticated({
                 >
                   Article
                 </NavLink>
+                <NavLink
+                  href={route('doctor.table')}
+                  active={route().current('doctor.table')}
+                >
+                  Doctor
+                </NavLink>
               </div>
             </div>
 

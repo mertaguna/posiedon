@@ -15,7 +15,14 @@ interface ArticleFormProps {
 }
 
 export default function ArticleForm({ data, setData }: ArticleFormProps) {
-  const { errors, categories, tags } = usePage().props;
+  const { errors, categories, tags } = usePage<{
+    errors: any;
+    categories: any[];
+    tags: any[];
+    auth: any;
+    articles: any;
+    ziggy: any;
+  }>().props;
   console.log(categories);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 

@@ -10,34 +10,36 @@ import { Check, X } from 'lucide-react';
 import { Fragment, useState } from 'react';
 import { Badge } from './ui/badge';
 
-interface Tag {
+interface Schedule {
   id: number;
-  name: string;
+  day: string;
+  start_time: string;
+  end_time: string;
 }
 
 interface MultiSelectProps {
-  data: Tag[];
-  selectedItems: Tag[];
-  onChange: (selectedItems: Tag[]) => void;
+  data: Schedule[];
+  selectedItems: Schedule[];
+  onChange: (selectedItems: Schedule[]) => void;
   buttonClassName?: string;
 }
 
-export default function MultiSelect({
+export default function MultiSelectSchedule({
   data,
   selectedItems,
   onChange,
   buttonClassName,
 }: MultiSelectProps) {
-  const [selected, setSelected] = useState<Tag[]>(selectedItems);
+  const [selected, setSelected] = useState<Schedule[]>(selectedItems);
   const [query, setQuery] = useState('');
 
-  const handleChange = (items: Tag[]) => {
+  const handleChange = (items: Schedule[]) => {
     setSelected(items);
     onChange(items);
   };
 
-  const removeTag = (tag: Tag) => {
-    const newSelected = selected.filter((item) => item.id !== tag.id);
+  const removeSchedule = (schedule: Schedule) => {
+    const newSelected = selected.filter((item) => item.id !== schedule.id);
     setSelected(newSelected);
     onChange(newSelected);
   };
@@ -45,8 +47,8 @@ export default function MultiSelect({
   const filteredData =
     query === ''
       ? data
-      : data.filter((tag) =>
-          tag.name.toLowerCase().includes(query.toLowerCase()),
+      : data.filter((schedule) =>
+          schedule.day.toLowerCase().includes(query.toLowerCase()),
         );
 
   return (
@@ -63,23 +65,28 @@ export default function MultiSelect({
               selected.map((item) => (
                 <span
                   key={item.id}
-                  className="flex items-center gap-1 rounded-md bg-slate-200 px-2 py-1 text-xs font-medium text-slate-950"
+                  className="flex items-center gap-1 rounded-md bg-amber-100 px-2 py-2 font-medium text-amber-900"
                 >
-                  {item.name}
+                  <div className="flex">
+                    <div className="min-w-24 flex-none">{item.day}</div>
+                    <div className="w-auto flex-1 text-end font-mono font-bold">
+                      {item.start_time} - {item.end_time}
+                    </div>
+                  </div>
                   <Badge
                     variant={'outline'}
                     className="border-none px-0"
                     onClick={(e) => {
                       e.stopPropagation();
-                      removeTag(item);
+                      removeSchedule(item);
                     }}
                   >
-                    <X className="size-3" />
+                    <X className="size-4" />
                   </Badge>
                 </span>
               ))
             ) : (
-              <span className="text-gray-400">Select tags</span>
+              <span className="text-gray-400">Select Schedules</span>
             )}
           </div>
           <span className="pointer-events-none absolute inset-y-0 right-0 flex items-center pr-2">
@@ -105,11 +112,11 @@ export default function MultiSelect({
           leaveTo="opacity-0"
         >
           <ListboxOptions className="absolute mt-1 max-h-60 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-            <div className="sticky top-0 z-10 bg-white px-3 py-1">
+            <div className="sticky top-0 z-50 bg-white px-3 py-1">
               <input
                 type="text"
                 className="w-full rounded-md border-none bg-white py-2 pl-3 pr-10 shadow-sm focus:border-indigo-500 focus:outline-none focus:ring-1 focus:ring-slate-900 sm:text-sm"
-                placeholder="Search..."
+                placeholder="Search day..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
               />
@@ -131,7 +138,12 @@ export default function MultiSelect({
                         selected ? 'font-medium' : 'font-normal'
                       }`}
                     >
-                      {item.name}
+                      <div className="flex justify-between">
+                        <div className="flex-none">{item.day}</div>
+                        <div className="w-auto flex-1 text-end font-mono font-bold">
+                          {item.start_time} - {item.end_time}
+                        </div>
+                      </div>
                     </span>
                     {selected ? (
                       <span className="absolute inset-y-0 left-0 flex items-center pl-3 text-amber-600">

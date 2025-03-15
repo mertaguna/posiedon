@@ -2,12 +2,12 @@
 
 namespace App\Http\Resources;
 
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Http\Resources\Json\JsonResource;
 use Illuminate\Support\Facades\Storage;
-use Carbon\Carbon;
 
-class DoctorItemResource extends JsonResource
+class DoctorEditResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -20,12 +20,14 @@ class DoctorItemResource extends JsonResource
             'id'            => $this->id,
             'name'          => $this->name,
             'slug'          => $this->slug,
+            'specialist_id' => $this->specialist_id,
             'picture'       => $this->picture ? Storage::url($this->picture) : null,
             'specialist'    => [
+                'id' => $this->specialist->id,
                 'name' => $this->specialist->name,
-                'slug' => $this->specialist->slug,
             ],
             'schedules' => $this->schedules->map(fn($schedule) => [
+                'id'            => $schedule->id,
                 'day'           => $schedule->day,
                 'start_time'    => Carbon::parse($schedule->start_time)->format('h:i A'),
                 'end_time'      => Carbon::parse($schedule->end_time)->format('h:i A'),

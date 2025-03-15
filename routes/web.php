@@ -22,7 +22,9 @@ Route::middleware('locale')->group(function () {
 
     Route::get('/', HomeController::class)->name('home');
 
-    Route::get('doctors', [DoctorController::class, 'index'])->name('doctor.index');
+    Route::get('doctor/table', [DoctorController::class, 'table'])->name('doctor.table');
+    Route::resource('doctor', DoctorController::class);
+
     Route::get('specialist', [SpecialistController::class, 'index'])->name('specialist.index');
     Route::get('specialist/{specialist:slug}', [SpecialistController::class, 'show'])->name('specialist.show');
 

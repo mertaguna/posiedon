@@ -39,7 +39,7 @@ export default function Doctor(prop: SpecialistProps) {
       <Container>
         {specialists.length ? (
           <>
-            <Grid>
+            <Grid cols={4}>
               {specialists.map((spesialis: any) => (
                 <Card
                   key={spesialis.slug}
