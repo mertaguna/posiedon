@@ -104,10 +104,12 @@ export default function Home({ articles, categories_home }: PageProps) {
                 <Calendar className="stroke-[3px]" />
                 <div>{__('Appointment')}</div>
               </Button>
-              <Button variant={'link'} className="rounded-2xl px-9 py-6">
-                {__('Our services')}
-                <ArrowRightIcon />
-              </Button>
+              <Link href={route('specialist.index')}>
+                <Button variant={'link'} className="rounded-2xl px-9 py-6">
+                  {__('Our specialist')}
+                  <ArrowRightIcon />
+                </Button>
+              </Link>
             </div>
           </div>
         </div>

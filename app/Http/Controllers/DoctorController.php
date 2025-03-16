@@ -28,13 +28,6 @@ class DoctorController extends Controller
         $this->specialists = Specialist::select('id', 'name') ->get();
     }
 
-    public static function middleware(): array
-    {
-        return [
-            new Middleware('auth', ['create', 'edit', 'store']),
-        ];
-    }
-
     public function table(Request $request)
     {
         $doctors = Doctor::query()

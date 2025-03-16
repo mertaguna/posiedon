@@ -22,8 +22,22 @@ Route::middleware('locale')->group(function () {
 
     Route::get('/', HomeController::class)->name('home');
 
-    Route::get('doctor/table', [DoctorController::class, 'table'])->name('doctor.table');
-    Route::resource('doctor', DoctorController::class);
+    Route::middleware('auth')->group(function () {
+        Route::get('doctor/table', [DoctorController::class, 'table'])->name('doctor.table');
+        Route::resource('doctor', DoctorController::class)->except(['index', 'show']);
+        Route::get('article/table', [ArticleController::class, 'table'])->name('article.table');
+        Route::resource('article', ArticleController::class)->except(['index', 'show']);
+        Route::get('dashboard', DashboardController::class)->name('dashboard');
+        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
+    });
+
+    Route::get('article', [ArticleController::class, 'index'])->name('article.index');
+    Route::get('article/{article}', [ArticleController::class, 'show'])->name('article.show');
+
+    Route::get('doctor', [DoctorController::class, 'index'])->name('doctor.index');
+    Route::get('doctor/{doctor}', [DoctorController::class, 'show'])->name('doctor.show');
 
     Route::get('specialist', [SpecialistController::class, 'index'])->name('specialist.index');
     Route::get('specialist/{specialist:slug}', [SpecialistController::class, 'show'])->name('specialist.show');
@@ -31,19 +45,8 @@ Route::middleware('locale')->group(function () {
     Route::get('categories/{category:slug}', [CategoryController::class, 'show'])->name('categories.show');
     Route::get('tags/{tag:slug}', [TagController::class, 'show'])->name('tags.show');
 
-    Route::get('article/table', [ArticleController::class, 'table'])->name('article.table');
-    Route::resource('article', ArticleController::class);
-
     Route::get('excellence', ExcellenceController::class)->name('excellence');
     Route::get('about', AboutController::class)->name('about');
-
-
-    Route::middleware('auth')->group(function () {
-        Route::get('dashboard', DashboardController::class)->name('dashboard');
-        Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
-        Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
-        Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
-    });
 
     Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
 

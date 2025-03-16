@@ -15,17 +15,10 @@ use Illuminate\Routing\Controllers\HasMiddleware;
 use Illuminate\Routing\Controllers\Middleware;
 use Illuminate\Http\Request;
 
-class ArticleController extends Controller implements HasMiddleware
+class ArticleController extends Controller
 {
     public $tags;
     public $categories;
-
-    public static function middleware(): array
-    {
-        return [
-            new Middleware('auth', ['create', 'edit', 'store']),
-        ];
-    }
 
     public function __construct()
     {

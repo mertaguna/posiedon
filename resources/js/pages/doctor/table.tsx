@@ -9,6 +9,13 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/components/ui/alert-dialog';
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from '@/components/ui/tooltip';
+
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import {
@@ -52,6 +59,8 @@ interface DoctorTableProps {
       };
       schedules: Array<{
         day: string;
+        start_time: string;
+        end_time: string;
       }>;
       url: string;
     }>;
@@ -107,8 +116,7 @@ export default function DoctorTable(props: DoctorTableProps) {
                 <TableHeader>
                   <TableRow>
                     <TableHead>#</TableHead>
-                    <TableHead>Name</TableHead>
-                    <TableHead>Specialist</TableHead>
+                    <TableHead>Doctor</TableHead>
                     <TableHead>Schedule</TableHead>
                     <TableHead className="text-right">Act</TableHead>
                   </TableRow>
@@ -119,19 +127,34 @@ export default function DoctorTable(props: DoctorTableProps) {
                       <TableRow key={doctor.id}>
                         <TableCell>{meta.from + i}</TableCell>
                         <TableCell className="w-[450px]">
-                          <Link href={doctor.url}>{doctor.name}</Link>
+                          <div className="flex flex-col">
+                            <Link href={route('doctor.edit', doctor.slug)}>
+                              <p className="text-sm font-bold text-gray-900">
+                                {doctor.name}
+                              </p>
+                              <p className="text-sm text-gray-500">
+                                {doctor.specialist.name}
+                              </p>
+                            </Link>
+                          </div>
                         </TableCell>
-                        <TableCell>{doctor.specialist.name}</TableCell>
                         <TableCell>
-                          {doctor.schedules.map((schedule, i) => (
-                            <Badge
-                              key={i}
-                              variant={'secondary'}
-                              className="mx-1"
-                            >
-                              {schedule.day}
-                            </Badge>
-                          ))}
+                          <TooltipProvider>
+                            {doctor.schedules.map((schedule, i) => (
+                              <Tooltip key={i}>
+                                <TooltipTrigger>
+                                  <Badge variant={'secondary'} className="mx-1">
+                                    {schedule.day}
+                                  </Badge>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  <p className="font-mono">
+                                    {schedule.start_time} - {schedule.end_time}
+                                  </p>
+                                </TooltipContent>
+                              </Tooltip>
+                            ))}
+                          </TooltipProvider>
                         </TableCell>
                         <TableCell className="text-right">
                           <DropdownMenu>
