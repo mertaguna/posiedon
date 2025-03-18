@@ -120,9 +120,9 @@ export default function ResponsiveNavbar() {
                   >
                     <Link
                       className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                      href="#"
+                      href={route('specialist.index')}
                     >
-                      {__('Doctor')}
+                      {__('Our specialist')}
                     </Link>
                   </Button>
 

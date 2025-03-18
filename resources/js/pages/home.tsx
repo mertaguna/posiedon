@@ -1,6 +1,5 @@
 import { Container } from '@/components/container';
 import { MovingCardsPartner } from '@/components/moving-card';
-import { OurDoctor } from '@/components/our-doctor';
 import { Button } from '@/components/ui/button';
 import {
   Carousel,
@@ -18,7 +17,7 @@ import { ArrowRightIcon, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import garbaFoto from '../../../public/assets/image/garba-foto.jpg';
 
-export default function Home({ articles, categories_home }: PageProps) {
+export default function Home({ articles }: PageProps) {
   const [imageLoaded, setImageLoaded] = useState<boolean[]>([]);
   const artikel = Object.values(articles);
 
@@ -55,9 +54,7 @@ export default function Home({ articles, categories_home }: PageProps) {
         </div>
         <div className="relative mx-auto flex w-full max-w-xl flex-col items-center lg:max-w-screen-2xl lg:items-start">
           <div className="my-10 text-center lg:my-40 lg:ml-10 lg:max-w-lg lg:pr-5 lg:text-start">
-            <div className="mb-5 hidden lg:block">
-              <OurDoctor />
-            </div>
+            {/* <div className="mb-5 hidden lg:block"> <OurDoctor /></div> */}
 
             <h1 className="font-sans text-4xl font-extrabold leading-snug tracking-normal text-foreground [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)] lg:text-5xl">
               {__('Your Health')}

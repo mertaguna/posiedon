@@ -3,7 +3,7 @@ export default function Services() {
     <div className="min-h-screen bg-gray-100 p-8">
       <div className="mx-auto max-w-6xl rounded-2xl bg-white p-6 shadow-lg">
         <h1 className="mb-8 text-center text-4xl font-bold text-blue-900">
-          Layanan RSU Garba Med Kerobokan
+          Layanan RSU GarbaMed Kerobokan
         </h1>
         <p className="mb-6 text-lg text-gray-700">
           Selamat datang di <strong>RSU Garba Med Kerobokan</strong>, pusat

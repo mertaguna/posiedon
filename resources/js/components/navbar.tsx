@@ -46,7 +46,6 @@ export function Navbar() {
   return (
     <nav className="sticky top-0 z-50 hidden bg-background/90 backdrop-blur-lg lg:block">
       <Container>
-        {/* <NavbarTop /> */}
         <div className="flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center">
@@ -88,12 +87,6 @@ export function Navbar() {
               >
                 {__('Our Specialist')}
               </Navlink>
-              {/* <Navlink
-                current={route().current('excellence')}
-                href={route('excellence')}
-              >
-                {__('Excellence')}
-              </Navlink> */}
               <Navlink href="#">{__('Our services')}</Navlink>
 
               <Button className="rounded-2xl bg-white py-7 font-black text-primary transition-colors duration-300 hover:bg-primary hover:text-amber-200 hover:shadow-lg">
