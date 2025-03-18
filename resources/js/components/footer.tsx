@@ -12,10 +12,10 @@ export function Footer() {
         <div className="sm:col-span-2">
           <Link href="/">
             <div className="flex items-center">
-              <AppLogo className="size-16" />
+              <AppLogo className="size-8 lg:size-16" />
               <span className="sr-only">go to home page</span>
               <div className="flex flex-col">
-                <div className="ml-2 font-sans text-xl font-medium leading-snug md:text-2xl">
+                <div className="ml-2 font-sans text-sm font-medium leading-snug md:text-2xl lg:text-xl">
                   {__('Garbaméd Hospital')}
                 </div>
                 <div className="ml-2">Safety and Integrity</div>

@@ -125,18 +125,7 @@ export default function ResponsiveNavbar() {
                       {__('Doctor')}
                     </Link>
                   </Button>
-                  <Button
-                    variant={'ghost'}
-                    className="w-full px-0 py-6"
-                    asChild
-                  >
-                    <Link
-                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                      href={route('excellence')}
-                    >
-                      {__('Excellence')}
-                    </Link>
-                  </Button>
+
                   <Button
                     variant={'ghost'}
                     className="w-full px-0 py-6"

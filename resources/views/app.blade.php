@@ -16,7 +16,7 @@
     @viteReactRefresh
     @vite(['resources/js/app.tsx', "resources/js/pages/{$page['component']}.tsx"])
     @inertiaHead
-    @include('botman-widget')
+    {{-- @include('botman-widget') --}}
 </head>
 
 <body class="font-sans antialiased">

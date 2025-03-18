@@ -3,6 +3,7 @@
 use App\Http\Controllers\AboutController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
+use App\Http\Controllers\ChatbotController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\DoctorController;
 use App\Http\Controllers\ExcellenceController;
@@ -47,6 +48,8 @@ Route::middleware('locale')->group(function () {
 
     Route::get('excellence', ExcellenceController::class)->name('excellence');
     Route::get('about', AboutController::class)->name('about');
+    Route::get('chatbot', ChatbotController::class)->name('chatbot');
+
 
     Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
 

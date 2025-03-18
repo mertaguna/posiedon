@@ -3,13 +3,6 @@ import { MovingCardsPartner } from '@/components/moving-card';
 import { OurDoctor } from '@/components/our-doctor';
 import { Button } from '@/components/ui/button';
 import {
-  Card,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from '@/components/ui/card';
-import {
   Carousel,
   CarouselContent,
   CarouselItem,
@@ -21,7 +14,7 @@ import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
 import { PageProps } from '@/types';
 import { Head, Link } from '@inertiajs/react';
-import { ArrowRightIcon, Calendar, Rocket } from 'lucide-react';
+import { ArrowRightIcon, Calendar } from 'lucide-react';
 import { useState } from 'react';
 import garbaFoto from '../../../public/assets/image/garba-foto.jpg';
 
@@ -42,26 +35,6 @@ export default function Home({ articles, categories_home }: PageProps) {
       <Head title={__('Home')} />
       <div className="relative flex flex-col-reverse lg:flex-col lg:py-16 lg:pb-0 lg:pt-0">
         <div className="inset-y-0 right-0 top-0 z-0 mx-auto w-full max-w-xl px-2 py-6 md:px-0 lg:absolute lg:mx-0 lg:mb-0 lg:w-7/12 lg:max-w-full lg:py-0 lg:pr-0 xl:px-0">
-          <div className="absolute right-10 top-96 z-50 hidden duration-1000 lg:block">
-            <Card className="w-[220px] rounded-3xl border-none shadow-2xl shadow-destructive/20">
-              <CardHeader className="text-center">
-                <CardTitle>{__('Medical Check-up ')}🔥</CardTitle>
-                <CardDescription>
-                  Medical check-up for all ages get a 20% discount for every
-                  check-up'
-                </CardDescription>
-              </CardHeader>
-              <CardFooter className="flex justify-center">
-                <Button
-                  variant={'destructive'}
-                  className="rounded-lg px-3 py-5 font-extrabold shadow-lg"
-                >
-                  {__('Get Promo')}
-                  <Rocket />
-                </Button>
-              </CardFooter>
-            </Card>
-          </div>
           <svg
             className="absolute left-0 z-10 hidden h-full -translate-x-1/2 transform text-background lg:block"
             viewBox="0 0 100 100"

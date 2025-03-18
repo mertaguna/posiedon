@@ -165,7 +165,10 @@ export default function Show(props: any) {
                 {articles.length ? (
                   <ul className="space-y-4">
                     {articles.map((relatedArticle: any, index: number) => (
-                      <Link href={route('article.show', relatedArticle.slug)}>
+                      <Link
+                        key={index}
+                        href={route('article.show', relatedArticle.slug)}
+                      >
                         <li
                           key={relatedArticle.slug}
                           className="flex gap-4 py-4"

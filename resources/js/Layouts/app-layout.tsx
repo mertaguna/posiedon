@@ -1,6 +1,7 @@
 import { Footer } from '@/components/footer';
 import { Navbar } from '@/components/navbar';
 import ResponsiveNavbar from '@/components/responsive-navbar';
+import Chatbot from '@/pages/chatbot';
 import { PropsWithChildren, ReactNode } from 'react';
 
 export default function AppLayout({
@@ -11,6 +12,7 @@ export default function AppLayout({
       <ResponsiveNavbar />
       <Navbar />
       <main>{children}</main>
+      <Chatbot />
       <Footer />
     </div>
   );
