@@ -12,8 +12,8 @@ export default function AppLayout({
       <ResponsiveNavbar />
       <Navbar />
       <main>{children}</main>
-      <Chatbot />
       <Footer />
+      <Chatbot />
     </div>
   );
 }

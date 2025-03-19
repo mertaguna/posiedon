@@ -4,7 +4,6 @@ import './bootstrap';
 import { createInertiaApp } from '@inertiajs/react';
 import { resolvePageComponent } from 'laravel-vite-plugin/inertia-helpers';
 import { createRoot, hydrateRoot } from 'react-dom/client';
-import { TooltipProvider } from './components/ui/tooltip';
 
 const appName = import.meta.env.VITE_APP_NAME || 'Garba';
 
@@ -21,14 +20,10 @@ createInertiaApp({
       return;
     }
 
-    createRoot(el).render(
-      <TooltipProvider>
-        <App {...props} />
-      </TooltipProvider>,
-    );
+    createRoot(el).render(<App {...props} />);
   },
   progress: {
-    color: '#4B5563',
+    color: '#1D4ED8',
     showSpinner: true,
   },
 });

@@ -133,7 +133,7 @@ const AnimationComponent: React.FC<{
         {segment.split('').map((char, charIndex) => (
           <motion.span
             key={`char-${charIndex}`}
-            aria-hidden="true"
+            // aria-hidden="true"
             variants={variants}
             className="inline-block whitespace-pre"
           >

@@ -64,7 +64,7 @@ export function Footer() {
               title="Our whatsapp"
               className="underline-offset-8 transition-colors duration-300 hover:underline"
             >
-              850-123-5021
+              +62 812 5286 6162
             </a>
           </div>
           <div className="flex text-center">
