@@ -46,11 +46,12 @@ export function ChatBotForm({
     }, 600);
   };
   return (
-    <form onSubmit={handleFormSubmit}>
+    <form id="" onSubmit={handleFormSubmit}>
       <div className="flex items-center">
         <Input
+          autoFocus
           ref={inputRef}
-          className="w-full rounded-xl border-[0.1px] border-primary py-6 text-xs focus:outline-none focus:ring-0"
+          className="flex-grow rounded-xl border-[0.1px] border-primary py-6 focus:outline-none focus:ring-0"
           placeholder="Type a message..."
         />
 

@@ -1,5 +1,6 @@
 import { ChatBotForm } from '@/components/chat-bot-form';
 import ChatMessage from '@/components/chat-bot-message';
+import { IoChatbubbleEllipses } from 'react-icons/io5';
 
 import { AppLogo } from '@/components/app-logo';
 import {
@@ -17,12 +18,11 @@ import {
   DrawerHeader,
   DrawerTitle,
 } from '@/components/ui/drawer';
+import { GlowEffect } from '@/components/ui/glow-effect';
 import { useMediaQuery } from '@/hooks/use-media-query';
-import { GearIcon } from '@radix-ui/react-icons';
-import { Bot, X } from 'lucide-react';
+import { X } from 'lucide-react';
 import { motion } from 'motion/react';
-import { useEffect, useRef, useState } from 'react';
-import { BsChatDots } from 'react-icons/bs';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { RiRobot2Fill } from 'react-icons/ri';
 import { GarbaBotInfo } from '../lib/garbabot';
 
@@ -88,6 +88,25 @@ export default function Chatbot() {
     setOpen(!open);
   };
   const isDesktop = useMediaQuery('(min-width: 768px)');
+  const [chatHeight, setChatHeight] = useState('75vh'); // Default tinggi
+
+  // Menyesuaikan tinggi chatbox saat keyboard muncul
+  useLayoutEffect(() => {
+    const updateHeight = () => {
+      requestAnimationFrame(() => {
+        const viewportHeight = window.innerHeight;
+        setChatHeight(`${viewportHeight * 0.7}px`); // Sesuaikan tinggi dengan layar
+      });
+    };
+
+    // Perbaiki bug pertama kali akses
+    setTimeout(updateHeight, 50);
+
+    window.addEventListener('resize', updateHeight);
+    return () => {
+      window.removeEventListener('resize', updateHeight);
+    };
+  }, []);
 
   if (isDesktop)
     return (
@@ -95,16 +114,21 @@ export default function Chatbot() {
         <Dialog open={open} onOpenChange={setOpen}>
           <DialogContent className="sm:max-w-xl">
             <DialogHeader>
-              <DialogTitle>Garbot</DialogTitle>
-              <DialogDescription>Garbamed Hospital Bot</DialogDescription>
+              <DialogTitle>
+                <div className="flex items-center gap-2">
+                  <AppLogo className="size-8" />
+                  <h1 className="text-xl font-bold">Garbot</h1>
+                </div>
+              </DialogTitle>
+              <DialogDescription></DialogDescription>
             </DialogHeader>
             <div className="max-h-[80vh] min-h-[50vh]">
               {/* bot body */}
               <div ref={chatBodyRef} className="h-[50vh] overflow-y-auto p-4">
                 <div className="flex flex-col gap-2">
                   <div className="flex max-w-xs items-end gap-2 md:max-w-md">
-                    <div className="rounded-full bg-primary p-2 text-white">
-                      <Bot />
+                    <div className="rounded-full p-0 text-primary">
+                      <RiRobot2Fill className="size-7" />
                     </div>
                     <div className="self-start rounded-br-xl rounded-tl-xl rounded-tr-xl bg-primary/5 p-4 text-xs md:text-sm">
                       Hello I'm Garbot, your friendly Garba Hospital Bot
@@ -127,47 +151,24 @@ export default function Chatbot() {
         </Dialog>
 
         <div className="fixed bottom-8 right-8">
-          <motion.div
-            whileTap={{ scale: 0.95 }}
-            onHoverStart={() => console.log('hover started!')}
-            onClick={toggleChat}
-            whileHover={{
-              scale: 1.2,
-              borderRadius: '50%',
-              boxShadow: '0px 10px 30px rgba(0, 0, 0, 0.2)',
-              transition: {
-                duration: 0.8,
-                repeat: Infinity,
-                repeatType: 'reverse',
-              },
-            }}
-            initial={{
-              rotate: 0,
-              scale: 1,
-              boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)',
-              background: 'linear-gradient(135deg, #FACC15, #F59E0B)',
-              borderRadius: '0.1rem',
-            }}
-            animate={{
-              rotate: open ? 45 : 0,
-              scale: open ? 1.25 : 1,
-              boxShadow: open
-                ? '0px 10px 30px rgba(0, 0, 0, 0.2)'
-                : '0px 0px 0px rgba(0, 0, 0, 0)',
-              background: open
-                ? 'linear-gradient(135deg, #ff9a9e, #fad0c4)'
-                : 'linear-gradient(135deg, #FACC15, #F59E0B)',
-              borderRadius: open ? '50%' : '20%',
-            }}
-            transition={{ duration: 0.5, ease: 'easeInOut' }}
-            className="p-4"
-          >
-            {open ? (
-              <GearIcon className="h-8 w-8 animate-spin text-white" />
-            ) : (
-              <BsChatDots className="h-8 w-8 text-white" />
-            )}
-          </motion.div>
+          <div className="relative">
+            <GlowEffect
+              className="rounded-2xl"
+              colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
+              mode="colorShift"
+              blur="soft"
+              duration={3}
+              scale={1.1}
+            />
+
+            <motion.div
+              whileTap={{ scale: 0.9 }}
+              onClick={toggleChat}
+              className="relative rounded-2xl bg-gradient-to-tr from-primary to-blue-700 p-4"
+            >
+              <IoChatbubbleEllipses className="h-8 w-8 fill-amber-200" />
+            </motion.div>
+          </div>
         </div>
       </>
     );
@@ -175,37 +176,30 @@ export default function Chatbot() {
   return (
     <>
       <div className="fixed bottom-8 right-8">
-        <motion.div
-          whileTap={{ scale: 0.95 }}
-          onClick={toggleChat}
-          initial={{
-            rotate: 0,
-            scale: 1,
-            boxShadow: '0px 0px 0px rgba(0, 0, 0, 0)',
-            background: 'linear-gradient(135deg, #FACC15, #F59E0B)',
-            borderRadius: '0.1rem',
-          }}
-          animate={{
-            rotate: open ? 45 : 0,
-            scale: open ? 1.25 : 1,
-            boxShadow: open
-              ? '0px 10px 30px rgba(0, 0, 0, 0.2)'
-              : '0px 0px 0px rgba(0, 0, 0, 0)',
-            background: open
-              ? 'linear-gradient(135deg, #ff9a9e, #fad0c4)'
-              : 'linear-gradient(135deg, #FACC15, #F59E0B)',
-            borderRadius: open ? '50%' : '20%',
-          }}
-          transition={{ duration: 0.5, ease: 'easeInOut' }}
-          className="p-4"
-        >
-          <BsChatDots className="h-8 w-8 text-white" />
-        </motion.div>
+        <div className="relative">
+          <GlowEffect
+            className="rounded-2xl"
+            colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
+            mode="colorShift"
+            blur="soft"
+            duration={3}
+            scale={1.1}
+          />
+
+          <motion.div
+            whileTap={{ scale: 0.9 }}
+            onClick={toggleChat}
+            className="relative rounded-2xl bg-gradient-to-tr from-primary to-blue-700 p-4"
+          >
+            <IoChatbubbleEllipses className="h-8 w-8 fill-amber-200" />
+          </motion.div>
+        </div>
       </div>
+
       <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerContent className="max-h-[95vh] min-h-[95vh]">
+        <DrawerContent className="flex max-h-[85vh] flex-col">
           <DrawerHeader className="p-0 px-4">
-            <DrawerTitle className="">
+            <DrawerTitle>
               <div className="flex w-full items-center justify-between">
                 <div className="flex items-center justify-center gap-2">
                   <AppLogo className="size-8" />
@@ -218,28 +212,30 @@ export default function Chatbot() {
             </DrawerTitle>
             <DrawerDescription></DrawerDescription>
           </DrawerHeader>
-          <div className="">
-            {/* bot body */}
-            <div
-              ref={chatBodyRef}
-              className="h-[79vh] overflow-y-auto p-4 pb-10"
-            >
-              <div className="flex flex-col gap-2">
-                <div className="flex max-w-xs items-end gap-2 text-xs md:text-sm">
-                  <div className="rounded-full p-0 text-primary">
-                    <RiRobot2Fill className="size-7" />
-                  </div>
-                  <div className="self-start rounded-br-xl rounded-tl-xl rounded-tr-xl bg-primary/5 p-4">
-                    Hello I'm Garbot, your friendly Garba Hospital Bot
-                  </div>
+
+          {/* Chat Body (Tinggi Dinamis) */}
+          <div
+            className="flex-grow overflow-auto px-4 pt-3"
+            ref={chatBodyRef}
+            style={{ height: chatHeight }}
+          >
+            <div className="flex flex-col gap-2">
+              <div className="flex max-w-xs items-end gap-2 text-xs md:text-sm">
+                <div className="rounded-full p-0 text-primary">
+                  <RiRobot2Fill className="size-7" />
                 </div>
-                {chatHistory.map((chat: any, index: number) => (
-                  <ChatMessage key={index} chat={chat} />
-                ))}
+                <div className="self-start rounded-br-xl rounded-tl-xl rounded-tr-xl bg-primary/5 p-4">
+                  Hello I'm Garbot, your friendly Garba Hospital Bot
+                </div>
               </div>
+              {chatHistory.map((chat: any, index: number) => (
+                <ChatMessage key={index} chat={chat} />
+              ))}
             </div>
           </div>
-          <div className="absolute bottom-0 w-full bg-background p-4">
+
+          {/* Chat Input */}
+          <div className="sticky bottom-0 bg-background p-4">
             <ChatBotForm
               chatHistory={chatHistory}
               setChatHistory={setChatHistory}
