@@ -58,7 +58,7 @@ export default function Doctor() {
 
   return (
     <div className="container mx-auto p-4">
-      <h1 className="mb-4 text-2xl font-bold">Doctors</h1>
+      <div className="mb-4 text-2xl font-bold">Doctors</div>
       <div className="mb-4 flex gap-4">
         <Input
           type="text"

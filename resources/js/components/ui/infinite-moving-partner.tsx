@@ -80,6 +80,7 @@ export const InfiniteMovingPartner = ({
         {items.map((item, index) => {
           return (
             <img
+              alt={item.icon}
               className="max-h-11 md:max-h-16"
               src={item.icon} // Use the icon property
               key={index}

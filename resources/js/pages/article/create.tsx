@@ -80,7 +80,7 @@ export default function Create({ categories }: CreateProps) {
                     <div className="">picture</div>
                   </div>
                   <div className="p-4">
-                    <h1>{data.teaser || 'the teaser..'}</h1>
+                    <div>{data.teaser || 'the teaser..'}</div>
                   </div>
                   <div
                     className="prose prose-blue max-w-none p-4 prose-img:rounded-lg"

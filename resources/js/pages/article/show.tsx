@@ -53,7 +53,7 @@ export default function Show(props: any) {
               <img
                 className={`h-72 w-full rounded-2xl object-cover lg:h-[450px] ${imageLoaded ? 'block' : 'hidden'}`}
                 src={article.picture}
-                alt="Article Image"
+                alt={article.title}
               />
             </div>
           </div>
@@ -69,9 +69,9 @@ export default function Show(props: any) {
                     {article.category.name}
                   </Link>
                 </h3>
-                <h1 className="mb-2 mt-2 text-2xl font-black md:text-4xl lg:mt-0 lg:text-5xl">
+                <div className="mb-2 mt-2 text-2xl font-black md:text-4xl lg:mt-0 lg:text-5xl">
                   {article.title}
-                </h1>
+                </div>
                 <div className="pt-3">{article.created_at}</div>
                 <div className="mt-3 flex items-center gap-4">
                   <Avatar>

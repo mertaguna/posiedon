@@ -93,11 +93,12 @@ export default function Edit({ article }: EditProps) {
                     </div>
                     <img
                       className="max-w-[200px]"
+                      alt={data.title}
                       src={`http://127.0.0.1:8000/storage/${article.picture}`}
                     />
                   </div>
                   <div className="p-4">
-                    <h1>{data.teaser || 'the teaser..'}</h1>
+                    <div>{data.teaser || 'the teaser..'}</div>
                   </div>
                   <div
                     className="prose prose-blue max-w-none p-4 prose-img:rounded-lg"

@@ -48,7 +48,7 @@ export default function Home({ articles }: PageProps) {
           <img
             className={`h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none ${imageLoaded[0] ? 'block' : 'hidden'}`}
             src={garbaFoto}
-            alt=""
+            alt="garba"
             onLoad={() => handleImageLoad(0)}
           />
         </div>
@@ -56,13 +56,13 @@ export default function Home({ articles }: PageProps) {
           <div className="my-10 text-center lg:my-40 lg:ml-10 lg:max-w-lg lg:pr-5 lg:text-start">
             {/* <div className="mb-5 hidden lg:block"> <OurDoctor /></div> */}
 
-            <h1 className="font-sans text-4xl font-extrabold leading-snug tracking-normal text-foreground [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)] lg:text-5xl">
+            <div className="font-sans text-4xl font-extrabold leading-snug tracking-normal text-foreground [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)] lg:text-5xl">
               {__('Your Health')}
-            </h1>
+            </div>
 
-            <h1 className="mb-4 font-sans text-2xl tracking-normal text-foreground lg:text-4xl">
+            <div className="mb-4 font-sans text-2xl tracking-normal text-foreground lg:text-4xl">
               {__('is Our Top Priority')}
-            </h1>
+            </div>
 
             <p className="mb-8 px-5 md:text-lg lg:px-0 lg:pr-5">
               {__(
@@ -145,9 +145,9 @@ export default function Home({ articles }: PageProps) {
         </div>
       </Container>
 
-      <h1 className="pt-5 text-center text-xl tracking-tight sm:text-2xl">
+      <div className="pt-5 text-center text-xl tracking-tight sm:text-2xl">
         Partnership
-      </h1>
+      </div>
       <MovingCardsPartner />
     </>
   );

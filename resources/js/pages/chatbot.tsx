@@ -117,7 +117,7 @@ export default function Chatbot() {
               <DialogTitle>
                 <div className="flex items-center gap-2">
                   <AppLogo className="size-8" />
-                  <h1 className="text-xl font-bold">Garbot</h1>
+                  <div className="text-xl font-bold">Garbot</div>
                 </div>
               </DialogTitle>
               <DialogDescription></DialogDescription>
@@ -203,7 +203,7 @@ export default function Chatbot() {
               <div className="flex w-full items-center justify-between">
                 <div className="flex items-center justify-center gap-2">
                   <AppLogo className="size-8" />
-                  <h1 className="text-xl font-bold">Garbot</h1>
+                  <div className="text-xl font-bold">Garbot</div>
                 </div>
                 <DrawerClose>
                   <X className="h-6 w-6 cursor-pointer" />
