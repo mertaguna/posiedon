@@ -15,7 +15,7 @@ export default function ChatMessage({ chat }: ChatMessageProps) {
       <>
         {chat.role === 'user' ? (
           <div className="flex flex-col items-end">
-            <div className="my-1 max-w-xs self-end rounded-bl-xl rounded-tl-xl rounded-tr-xl bg-primary p-4 text-xs text-white md:max-w-md">
+            <div className="my-1 max-w-xs self-end rounded-bl-xl rounded-tl-xl rounded-tr-xl bg-primary p-4 text-sm text-white md:max-w-md">
               {chat.text}
             </div>
           </div>
@@ -25,7 +25,7 @@ export default function ChatMessage({ chat }: ChatMessageProps) {
               <RiRobot2Fill className="size-7" />
             </div>
             <div className="self-start rounded-br-xl rounded-tl-xl rounded-tr-xl bg-primary/5 p-4">
-              <Markdown className="text-xs md:text-sm">{chat.text}</Markdown>
+              <Markdown className="text-sm md:text-sm">{chat.text}</Markdown>
             </div>
           </div>
         ) : null}

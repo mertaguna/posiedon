@@ -64,7 +64,7 @@ export function Navbar() {
               <div className="flex flex-row gap-3 font-bold">
                 <div className="flex cursor-pointer items-center rounded-full underline-offset-8 hover:underline hover:decoration-red-500">
                   <Siren className="size-4 fill-amber-200 stroke-rose-600" />
-                  <h3 className="ml-2 text-xs text-rose-600">
+                  <h3 className="ml-2 text-xs text-rose-800">
                     +62 812 5286 6162
                   </h3>
                 </div>
@@ -89,7 +89,7 @@ export function Navbar() {
               </Navlink>
               <Navlink href="#">{__('Our services')}</Navlink>
 
-              <Button className="rounded-2xl bg-white py-7 font-black text-primary transition-colors duration-300 hover:bg-primary hover:text-amber-200 hover:shadow-lg">
+              <Button className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-6 text-sm font-bold text-primary transition duration-300 hover:bg-primary hover:text-amber-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 disabled:pointer-events-none disabled:opacity-50">
                 <Calendar className="mr-2 size-4 stroke-[3px]" />
                 <Link href={route('home')}>{__('Appointment')}</Link>
               </Button>

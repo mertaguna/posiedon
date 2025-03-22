@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- Meta Tags -->
-    <meta name="description" content="Garba Med adalah rumah sakit terpercaya yang menyediakan layanan kesehatan terbaik dengan fasilitas modern dan tenaga medis profesional.">
+    <meta name="description" content="GarbaMéd adalah rumah sakit terpercaya yang menyediakan layanan kesehatan terbaik dengan fasilitas modern dan tenaga medis profesional.">
     <meta name="keywords" content="garba, garbamed, hospital, garba med, rumah sakit, kesehatan, medis, layanan kesehatan, dokter, klinik">
-    <meta name="author" content="Garba Med">
+    <meta name="author" content="GarbaMed">
     <title inertia>{{ config('app.name', 'Garba') }}</title>
 
     <!-- Fonts -->

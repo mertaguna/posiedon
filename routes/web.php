@@ -50,8 +50,5 @@ Route::middleware('locale')->group(function () {
     Route::get('about', AboutController::class)->name('about');
     Route::get('chatbot', ChatbotController::class)->name('chatbot');
 
-
-    Route::match(['get', 'post'], '/botman', [App\Http\Controllers\BotManController::class, 'handle']);
-
     require __DIR__ . '/auth.php';
 });

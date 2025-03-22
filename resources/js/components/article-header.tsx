@@ -11,7 +11,7 @@ import {
 
 export function ArticleHeader({ title }: { title: string }) {
   return (
-    <Container className="px-4 md:px-8 lg:px-36">
+    <Container className="hidden px-4 md:px-8 lg:block lg:px-36">
       <Breadcrumb className="lg:block lg:py-6">
         <BreadcrumbList>
           <BreadcrumbItem>

@@ -18,7 +18,6 @@ import { Headset, Menu, Siren } from 'lucide-react';
 import { useState } from 'react';
 import { AppLogo } from './app-logo';
 import { FlagEnglish, FlagIndo } from './flag';
-import { Button } from './ui/button';
 
 export default function ResponsiveNavbar() {
   const languages = [
@@ -43,7 +42,7 @@ export default function ResponsiveNavbar() {
         </div>
         <div className="flex cursor-pointer items-center rounded-full underline-offset-8 hover:underline hover:decoration-red-500">
           <Siren className="size-4 fill-amber-200 stroke-rose-600" />
-          <h3 className="ml-2 text-xs text-rose-600">+62 812 5286 6162</h3>
+          <h3 className="ml-2 text-xs text-rose-800">+62 812 5286 6162</h3>
         </div>
       </div>
       <nav className="sticky top-0 z-50 block bg-background/95 px-4 py-4 backdrop-blur-2xl lg:hidden">
@@ -88,7 +87,7 @@ export default function ResponsiveNavbar() {
               </DropdownMenuContent>
             </DropdownMenu>
             <Sheet>
-              <SheetTrigger>
+              <SheetTrigger aria-label="Buka menu">
                 <Menu />
               </SheetTrigger>
               <SheetContent side={'bottom'}>
@@ -101,55 +100,33 @@ export default function ResponsiveNavbar() {
                   </SheetDescription>
                 </SheetHeader>
                 <div className="flex flex-col items-center gap-4 pb-16 pt-4">
-                  <Button
-                    variant={'ghost'}
-                    className="w-full px-0 py-6"
-                    asChild
+                  <Link
+                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                    href={route('home')}
                   >
-                    <Link
-                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                      href={route('home')}
-                    >
-                      {__('Home')}
-                    </Link>
-                  </Button>
-                  <Button
-                    variant={'ghost'}
-                    className="w-full px-0 py-6"
-                    asChild
-                  >
-                    <Link
-                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                      href={route('specialist.index')}
-                    >
-                      {__('Our specialist')}
-                    </Link>
-                  </Button>
+                    {__('Home')}
+                  </Link>
 
-                  <Button
-                    variant={'ghost'}
-                    className="w-full px-0 py-6"
-                    asChild
+                  <Link
+                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                    href={route('specialist.index')}
                   >
-                    <Link
-                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                      href={route('home')}
-                    >
-                      {__('Our services')}
-                    </Link>
-                  </Button>
-                  <Button
-                    variant={'ghost'}
-                    className="w-full px-0 py-6"
-                    asChild
+                    {__('Our specialist')}
+                  </Link>
+
+                  <Link
+                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                    href={route('home')}
                   >
-                    <Link
-                      className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                      href={route('home')}
-                    >
-                      {__('FAQs')}
-                    </Link>
-                  </Button>
+                    {__('Our services')}
+                  </Link>
+
+                  <Link
+                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+                    href={route('home')}
+                  >
+                    {__('FAQs')}
+                  </Link>
                 </div>
               </SheetContent>
             </Sheet>

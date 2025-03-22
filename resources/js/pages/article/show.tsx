@@ -72,15 +72,17 @@ export default function Show(props: any) {
                 <div className="mb-2 mt-2 text-2xl font-black md:text-4xl lg:mt-0 lg:text-5xl">
                   {article.title}
                 </div>
-                <div className="pt-3">{article.created_at}</div>
+                <div className="pt-3 text-xs md:text-lg">
+                  {article.created_at}
+                </div>
                 <div className="mt-3 flex items-center gap-4">
-                  <Avatar>
+                  <Avatar className="size-6 md:size-10">
                     <AvatarImage src="https://github.com/shadcn.png" />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
-                  <div className="flex flex-col">
+                  <div className="flex flex-col text-xs md:text-sm">
                     <div className="font-bold">{article.author.name}</div>
-                    <small>Tim Medis GarbaMed</small>
+                    <small>Tim GarbaMéd</small>
                   </div>
                 </div>
               </div>

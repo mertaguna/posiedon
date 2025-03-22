@@ -29,7 +29,7 @@ export default function Show({ category, ...props }: CategoryProps) {
 
   return (
     <>
-      <div className="bg-pattern-blue-50 mb-8 grid grid-cols-12 bg-blue-50 py-11 lg:py-32">
+      <div className="mb-8 grid grid-cols-12 bg-blue-50 py-11 bg-pattern-blue-50 lg:py-32">
         <div className="col-span-12">
           <div className="text-center text-2xl font-bold lg:text-6xl">
             {category.name}

@@ -8,7 +8,7 @@ export default function AppLayout({
   children,
 }: PropsWithChildren<{ breadcrumb?: ReactNode }>) {
   return (
-    <div className="min-h-svh bg-background">
+    <div className="min-h-screen bg-background">
       <ResponsiveNavbar />
       <Navbar />
       <main>{children}</main>

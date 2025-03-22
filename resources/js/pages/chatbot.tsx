@@ -10,18 +10,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import {
-  Drawer,
-  DrawerClose,
-  DrawerContent,
-  DrawerDescription,
-  DrawerHeader,
-  DrawerTitle,
-} from '@/components/ui/drawer';
 import { GlowEffect } from '@/components/ui/glow-effect';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { X } from 'lucide-react';
-import { motion } from 'motion/react';
+
+import { AnimatePresence, motion } from 'framer-motion';
+
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { RiRobot2Fill } from 'react-icons/ri';
 import { GarbaBotInfo } from '../lib/garbabot';
@@ -108,6 +102,14 @@ export default function Chatbot() {
     };
   }, []);
 
+  useEffect(() => {
+    if (open) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = 'auto';
+    }
+  }, [open]);
+
   if (isDesktop)
     return (
       <>
@@ -139,7 +141,7 @@ export default function Chatbot() {
                   ))}
                 </div>
               </div>
-              <div className="w-full pt-4">
+              <div className="w-full pt-8">
                 <ChatBotForm
                   chatHistory={chatHistory}
                   setChatHistory={setChatHistory}
@@ -196,54 +198,58 @@ export default function Chatbot() {
         </div>
       </div>
 
-      <Drawer open={open} onOpenChange={setOpen}>
-        <DrawerContent className="flex max-h-[85vh] flex-col">
-          <DrawerHeader className="p-0 px-4">
-            <DrawerTitle>
-              <div className="flex w-full items-center justify-between">
-                <div className="flex items-center justify-center gap-2">
-                  <AppLogo className="size-8" />
-                  <div className="text-xl font-bold">Garbot</div>
-                </div>
-                <DrawerClose>
-                  <X className="h-6 w-6 cursor-pointer" />
-                </DrawerClose>
-              </div>
-            </DrawerTitle>
-            <DrawerDescription></DrawerDescription>
-          </DrawerHeader>
-
-          {/* Chat Body (Tinggi Dinamis) */}
-          <div
-            className="flex-grow overflow-auto px-4 pt-3"
-            ref={chatBodyRef}
-            style={{ height: chatHeight }}
+      <AnimatePresence>
+        {open && (
+          <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{
+              duration: 0.2,
+              ease: 'easeInOut',
+              scale: { type: 'spring', stiffness: 200, damping: 20 },
+            }}
+            exit={{ opacity: 0, scale: 0.8 }}
+            className="fixed bottom-0 z-50 h-full w-full overflow-y-auto bg-background"
           >
-            <div className="flex flex-col gap-2">
-              <div className="flex max-w-xs items-end gap-2 text-xs md:text-sm">
-                <div className="rounded-full p-0 text-primary">
-                  <RiRobot2Fill className="size-7" />
-                </div>
-                <div className="self-start rounded-br-xl rounded-tl-xl rounded-tr-xl bg-primary/5 p-4">
-                  Hello I'm Garbot, your friendly Garba Hospital Bot
-                </div>
+            <div className="sticky top-0 z-40 flex w-full translate-y-0 items-center justify-between p-4">
+              <div className="flex items-center justify-center gap-2">
+                <AppLogo className="size-8" />
+                <h1 className="text-xl font-bold text-primary">Garbot</h1>
               </div>
-              {chatHistory.map((chat: any, index: number) => (
-                <ChatMessage key={index} chat={chat} />
-              ))}
+              <X className="h-6 w-6 cursor-pointer" onClick={toggleChat} />
             </div>
-          </div>
 
-          {/* Chat Input */}
-          <div className="sticky bottom-0 bg-background p-4">
-            <ChatBotForm
-              chatHistory={chatHistory}
-              setChatHistory={setChatHistory}
-              generateBotResponse={generateBotResponse}
-            />
-          </div>
-        </DrawerContent>
-      </Drawer>
+            {/* bot body */}
+            <div
+              ref={chatBodyRef}
+              className="max-h-[80vh] overflow-auto p-4 pb-16"
+            >
+              <div className="flex flex-col gap-2">
+                <div className="flex max-w-xs items-end gap-2">
+                  <div className="rounded-full p-0 text-primary">
+                    <RiRobot2Fill className="size-7" />
+                  </div>
+                  <div className="self-start rounded-br-xl rounded-tl-xl rounded-tr-xl bg-primary/5 p-4 text-sm">
+                    Hello I'm Garbot, your friendly Garba Hospital Bot
+                  </div>
+                </div>
+                {chatHistory.map((chat: any, index: number) => (
+                  <ChatMessage key={index} chat={chat} />
+                ))}
+              </div>
+            </div>
+
+            {/* Chat Input */}
+            <div className="absolute inset-x-0 bottom-0 w-full bg-background px-4 pb-4 pt-8">
+              <ChatBotForm
+                chatHistory={chatHistory}
+                setChatHistory={setChatHistory}
+                generateBotResponse={generateBotResponse}
+              />
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </>
   );
 }
