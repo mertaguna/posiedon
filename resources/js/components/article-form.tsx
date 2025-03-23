@@ -23,7 +23,6 @@ export default function ArticleForm({ data, setData }: ArticleFormProps) {
     articles: any;
     ziggy: any;
   }>().props;
-  console.log(categories);
   const [imagePreview, setImagePreview] = useState<string | null>(null);
 
   const onchange = (e: any) => setData(e.target.name, e.target.value);
@@ -66,7 +65,7 @@ export default function ArticleForm({ data, setData }: ArticleFormProps) {
             name="picture"
             id="picture"
             type="file"
-            accept=".png, .jpg, .jpeg"
+            accept=".webp"
             onChange={handleImageChange}
             className={clsx(
               'block w-full rounded-md border-gray-200',
@@ -101,33 +100,37 @@ export default function ArticleForm({ data, setData }: ArticleFormProps) {
 
       <div className="flex gap-4 pb-8">
         <div className="w-1/2">
-          <Label htmlFor="category_id">Kategori</Label>
-          <MSelect
-            buttonClassName={clsx(
-              'block w-full rounded-md border-gray-200',
-              errors.category_id && 'border-red-500',
-            )}
-            value={data.category_id}
-            data={categories}
-            onChange={(e) => setData('category_id', e)}
-          />
-          {errors.category_id ? (
-            <ErrorField value={errors.category_id} />
-          ) : null}
+          <Label>
+            Kategori
+            <MSelect
+              buttonClassName={clsx(
+                'block w-full rounded-md border-gray-200',
+                errors.category_id && 'border-red-500',
+              )}
+              value={data.category_id}
+              data={categories}
+              onChange={(e) => setData('category_id', e)}
+            />
+            {errors.category_id ? (
+              <ErrorField value={errors.category_id} />
+            ) : null}
+          </Label>
         </div>
 
         <div className="w-1/2">
-          <Label htmlFor="tags">Tags</Label>
-          <MultiSelect
-            buttonClassName={clsx(
-              'block w-full rounded-md border-gray-200',
-              errors.tags && 'border-red-500',
-            )}
-            data={tags}
-            selectedItems={data.tags}
-            onChange={(e: any) => setData('tags', e)}
-          />
-          {errors.tags ? <ErrorField value={errors.tags} /> : null}
+          <Label>
+            Tags
+            <MultiSelect
+              buttonClassName={clsx(
+                'block w-full rounded-md border-gray-200',
+                errors.tags && 'border-red-500',
+              )}
+              data={tags}
+              selectedItems={data.tags}
+              onChange={(e: any) => setData('tags', e)}
+            />
+            {errors.tags ? <ErrorField value={errors.tags} /> : null}
+          </Label>
         </div>
       </div>
 

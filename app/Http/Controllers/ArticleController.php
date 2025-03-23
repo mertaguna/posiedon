@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests\ArticleRequest;
+use App\Http\Resources\ArticleEditResource;
 use App\Http\Resources\ArticleItemResource;
 use App\Http\Resources\ArticleSimpleResource;
 use App\Http\Resources\ArticleSingleResource;
@@ -96,11 +97,9 @@ class ArticleController extends Controller
     }
 
     public function edit (Article $article){
+        // return ArticleEditResource::make($article);
         return inertia('article/edit',[
-            'article' => $article->load([
-                'tags' => fn($query) => $query->select('id', 'name'),
-                'category' => fn($query) => $query->select('id', 'name')
-            ]),
+            'article' => ArticleEditResource::make($article),
             'tags' => $this->tags,
             'categories' => $this->categories,
         ]);

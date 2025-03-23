@@ -88,8 +88,10 @@ export default function Home({ articles }: PageProps) {
       <Container className="mx-4 px-10 py-12">
         <div className="flex flex-col lg:flex-row">
           <div className="mb-4 text-center lg:w-1/3 lg:text-start">
-            <h2 className="text-3xl">News & Healthpedia</h2>
-            <p className="mb-6 mt-2 text-lg text-gray-700 lg:mr-10">
+            <h2 className="text-xl font-semibold md:text-3xl">
+              News & Healthpedia
+            </h2>
+            <p className="mb-6 mt-2 text-sm text-gray-700 md:text-lg lg:mr-10">
               Find useful health information for your healthier life through our
               blog articles.
             </p>
@@ -125,7 +127,7 @@ export default function Home({ articles }: PageProps) {
                         <div className="mt-1 text-lg font-semibold">
                           <Link
                             href={route('article.show', item.slug)}
-                            className="flex flex-col text-primary hover:text-primary/80"
+                            className="flex flex-col text-xs hover:text-primary/80 md:text-sm"
                           >
                             <p className="line-clamp-2">{item.title}</p>
                           </Link>

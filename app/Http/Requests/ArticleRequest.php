@@ -22,7 +22,7 @@ class ArticleRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'picture'     => ['nullable', 'mimes:jpg,jpeg,png', 'max:2048'],
+            'picture'     => ['nullable', 'mimes:jpg,jpeg,png,webp', 'max:2048'],
             'title'       => ['required', 'string', 'min:3'],
             'teaser'      => ['required', 'string', 'min:3'],
             'body'        => ['required', 'string', 'min:3'],

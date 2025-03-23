@@ -10,7 +10,6 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
-  SheetTrigger,
 } from '@/components/ui/sheet';
 import { __ } from '@/lib/lang';
 import { Link } from '@inertiajs/react';
@@ -33,6 +32,8 @@ export default function ResponsiveNavbar() {
     },
   ];
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
+  const [open, setOpen] = useState(false);
+
   return (
     <>
       <div className="flex flex-row justify-between px-4 pt-2 font-bold lg:hidden">
@@ -45,7 +46,7 @@ export default function ResponsiveNavbar() {
           <h3 className="ml-2 text-xs text-rose-800">+62 812 5286 6162</h3>
         </div>
       </div>
-      <nav className="sticky top-0 z-50 block bg-background/95 px-4 py-4 backdrop-blur-2xl lg:hidden">
+      <div className="sticky top-0 z-50 block bg-background/95 px-4 py-4 backdrop-blur-2xl lg:hidden">
         <div className="flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center">
@@ -86,53 +87,53 @@ export default function ResponsiveNavbar() {
                 ))}
               </DropdownMenuContent>
             </DropdownMenu>
-            <Sheet>
-              <SheetTrigger aria-label="Buka menu">
-                <Menu />
-              </SheetTrigger>
-              <SheetContent side={'bottom'}>
-                <SheetHeader>
-                  <SheetTitle className="border-b border-primary pb-2 text-xl font-bold">
-                    Menu
-                  </SheetTitle>
-                  <SheetDescription>
-                    <div className="flex flex-col items-center"></div>
-                  </SheetDescription>
-                </SheetHeader>
-                <div className="flex flex-col items-center gap-4 pb-16 pt-4">
-                  <Link
-                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                    href={route('home')}
-                  >
-                    {__('Home')}
-                  </Link>
-
-                  <Link
-                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                    href={route('specialist.index')}
-                  >
-                    {__('Our specialist')}
-                  </Link>
-
-                  <Link
-                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                    href={route('home')}
-                  >
-                    {__('Our services')}
-                  </Link>
-
-                  <Link
-                    className="py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
-                    href={route('home')}
-                  >
-                    {__('FAQs')}
-                  </Link>
-                </div>
-              </SheetContent>
-            </Sheet>
+            <Menu onClick={() => setOpen(true)} />
           </div>
         </div>
-      </nav>
+      </div>
+      <Sheet open={open} onOpenChange={setOpen}>
+        <SheetContent side={'bottom'}>
+          <SheetHeader>
+            <SheetTitle className="border-b border-primary pb-2 text-xl font-bold">
+              Menu
+            </SheetTitle>
+            <SheetDescription></SheetDescription>
+          </SheetHeader>
+          <div className="flex flex-col items-center gap-4 pb-16 pt-4">
+            <Link
+              className="rounded-md px-3 py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+              href={route('home')}
+              onClick={() => setOpen(false)}
+            >
+              {__('Home')}
+            </Link>
+
+            <Link
+              className="rounded-md px-3 py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+              href={route('specialist.index')}
+              onClick={() => setOpen(false)}
+            >
+              {__('Our specialist')}
+            </Link>
+
+            <Link
+              className="rounded-md px-3 py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+              href={route('home')}
+              onClick={() => setOpen(false)}
+            >
+              {__('Our services')}
+            </Link>
+
+            <Link
+              className="rounded-md px-3 py-3 text-xl font-medium hover:bg-primary hover:text-amber-200"
+              href={route('home')}
+              onClick={() => setOpen(false)}
+            >
+              {__('FAQs')}
+            </Link>
+          </div>
+        </SheetContent>
+      </Sheet>
     </>
   );
 }

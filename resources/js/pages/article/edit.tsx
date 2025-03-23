@@ -94,7 +94,7 @@ export default function Edit({ article }: EditProps) {
                     <img
                       className="max-w-[200px]"
                       alt={data.title}
-                      src={`http://127.0.0.1:8000/storage/${article.picture}`}
+                      src={article.picture}
                     />
                   </div>
                   <div className="p-4">

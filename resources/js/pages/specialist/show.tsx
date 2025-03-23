@@ -86,10 +86,10 @@ function DoctorCard({ doctor, onClick }: { doctor: any; onClick: () => void }) {
       onClick={onClick}
     >
       <CardHeader className="relative p-0">
-        {!imageLoaded && <Skeleton className="h-80 w-full" />}
+        {!imageLoaded && <Skeleton className="h-48 w-full lg:h-80" />}
 
         <img
-          className={`h-80 w-full object-cover transition-opacity duration-500 ${
+          className={`h-48 w-full object-cover transition-opacity duration-500 lg:h-80 ${
             imageLoaded ? 'block' : 'hidden'
           }`}
           src={doctor.picture}

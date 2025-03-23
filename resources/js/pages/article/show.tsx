@@ -7,17 +7,7 @@ import { useEffect, useState } from 'react';
 import { ArticleHeader } from '@/components/article-header';
 import Markdown from '@/components/markdown';
 import { Button } from '@/components/ui/button';
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuShortcut,
-  DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
 import { Head, Link } from '@inertiajs/react';
-import { ArrowUpRightFromSquare, Share2 } from 'lucide-react';
-import { FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 
 export default function Show(props: any) {
   const { data: article, related: articles } = props.article;
@@ -77,7 +67,10 @@ export default function Show(props: any) {
                 </div>
                 <div className="mt-3 flex items-center gap-4">
                   <Avatar className="size-6 md:size-10">
-                    <AvatarImage src="https://github.com/shadcn.png" />
+                    <AvatarImage
+                      src="https://github.com/shadcn.png"
+                      alt="author"
+                    />
                     <AvatarFallback>CN</AvatarFallback>
                   </Avatar>
                   <div className="flex flex-col text-xs md:text-sm">
@@ -88,7 +81,7 @@ export default function Show(props: any) {
               </div>
 
               <div className="flex flex-col">
-                <div className="mt-3">
+                <div className="my-3">
                   {article.tags.length ? (
                     <div className="flex items-center gap-x-2">
                       {article.tags.map((tag: any) => (
@@ -97,49 +90,11 @@ export default function Show(props: any) {
                           key={tag.slug}
                           href={route('tags.show', tag.slug)}
                         >
-                          #{tag.name}
+                          {tag.name}
                         </Link>
                       ))}
                     </div>
                   ) : null}
-                </div>
-                <div className="flex gap-4">
-                  <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                      <Button
-                        size={'sm'}
-                        className="mb-3 mt-3 rounded-lg border-primary text-xs text-slate-950 lg:mb-0"
-                        variant="bordered"
-                      >
-                        Share <Share2 />
-                      </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent side="left" className="w-auto">
-                      <DropdownMenuGroup>
-                        <DropdownMenuItem>
-                          <FaInstagram />
-                          <span>Instagram</span>
-                          <DropdownMenuShortcut>
-                            <ArrowUpRightFromSquare size={10} />
-                          </DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <FaFacebook />
-                          <span>Facebook</span>
-                          <DropdownMenuShortcut>
-                            <ArrowUpRightFromSquare size={10} />
-                          </DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                        <DropdownMenuItem>
-                          <FaWhatsapp />
-                          <span>Whatsapp</span>
-                          <DropdownMenuShortcut>
-                            <ArrowUpRightFromSquare size={10} />
-                          </DropdownMenuShortcut>
-                        </DropdownMenuItem>
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
                 </div>
               </div>
             </div>
@@ -182,7 +137,8 @@ export default function Show(props: any) {
                             <img
                               className={`h-24 w-full rounded-xl object-cover ${relatedImageLoaded[index] ? 'block' : 'hidden'}`}
                               src={relatedArticle.picture}
-                              alt={relatedArticle.title}
+                              alt=""
+                              aria-hidden="true"
                               onLoad={() => handleRelatedImageLoad(index)}
                             />
                           </div>
@@ -198,7 +154,8 @@ export default function Show(props: any) {
                 )}
               </div>
 
-              <div className="w-full flex-col items-stretch justify-center">
+              {/* SHOW DOCTOR */}
+              <div className="hidden w-full flex-col items-stretch justify-center">
                 <div className="mb-4 border-b-2 pb-2 text-start text-2xl font-medium">
                   Our Doctor
                 </div>

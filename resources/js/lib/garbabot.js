@@ -37,9 +37,9 @@ RSU Garba Méd adalah rumah sakit umum swasta yang berlokasi di Badung Utara den
 
 📍 **Kontak Kami**
 
-📧 Email: info@garbamedhospital.com
-📍 Alamat: Jl. Raya Kerobokan No.53, Lingkungan Jambe, Kerobokan Kaja, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
-
+🔹 website: https://garbamedhospital.co.id
+🔹 Email: info@garbamedhospital.com
+🔹 Alamat: Jl. Raya Kerobokan No.53, Lingkungan Jambe, Kerobokan Kaja, Kec. Kuta Utara, Kabupaten Badung, Bali 80361
 🔹 Facebook: [facebook.com/GarbaMedHospital](https://facebook.com/GarbaMedHospital)
 🔹 Instagram: [@GarbaMedHospital](https://instagram.com/GarbaMedHospital)
 

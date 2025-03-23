@@ -85,7 +85,7 @@ export default function DoctorForm({ data, setData }: DoctorFormProps) {
                 name="picture"
                 id="picture"
                 type="file"
-                accept=".png, .jpg, .jpeg"
+                accept=".webp"
                 onChange={handleImageChange}
                 className={clsx(
                   'block w-full rounded-md border-gray-200',

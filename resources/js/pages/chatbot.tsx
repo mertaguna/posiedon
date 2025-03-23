@@ -1,6 +1,5 @@
 import { ChatBotForm } from '@/components/chat-bot-form';
 import ChatMessage from '@/components/chat-bot-message';
-import { IoChatbubbleEllipses } from 'react-icons/io5';
 
 import { AppLogo } from '@/components/app-logo';
 import {
@@ -10,12 +9,12 @@ import {
   DialogHeader,
   DialogTitle,
 } from '@/components/ui/dialog';
-import { GlowEffect } from '@/components/ui/glow-effect';
 import { useMediaQuery } from '@/hooks/use-media-query';
 import { X } from 'lucide-react';
 
 import { AnimatePresence, motion } from 'framer-motion';
 
+import ButtonBot from '@/components/ui/button-bot';
 import { useEffect, useLayoutEffect, useRef, useState } from 'react';
 import { RiRobot2Fill } from 'react-icons/ri';
 import { GarbaBotInfo } from '../lib/garbabot';
@@ -154,22 +153,7 @@ export default function Chatbot() {
 
         <div className="fixed bottom-8 right-8">
           <div className="relative">
-            <GlowEffect
-              className="rounded-2xl"
-              colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
-              mode="colorShift"
-              blur="soft"
-              duration={3}
-              scale={1.1}
-            />
-
-            <motion.div
-              whileTap={{ scale: 0.9 }}
-              onClick={toggleChat}
-              className="relative rounded-2xl bg-gradient-to-tr from-primary to-blue-700 p-4"
-            >
-              <IoChatbubbleEllipses className="h-8 w-8 fill-amber-200" />
-            </motion.div>
+            <ButtonBot onClick={toggleChat} />
           </div>
         </div>
       </>
@@ -179,42 +163,27 @@ export default function Chatbot() {
     <>
       <div className="fixed bottom-8 right-8">
         <div className="relative">
-          <GlowEffect
-            className="rounded-2xl"
-            colors={['#FF5733', '#33FF57', '#3357FF', '#F1C40F']}
-            mode="colorShift"
-            blur="soft"
-            duration={3}
-            scale={1.1}
-          />
-
-          <motion.div
-            whileTap={{ scale: 0.9 }}
-            onClick={toggleChat}
-            className="relative rounded-2xl bg-gradient-to-tr from-primary to-blue-700 p-4"
-          >
-            <IoChatbubbleEllipses className="h-8 w-8 fill-amber-200" />
-          </motion.div>
+          <ButtonBot onClick={toggleChat} />
         </div>
       </div>
 
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
+            initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{
               duration: 0.2,
               ease: 'easeInOut',
-              scale: { type: 'spring', stiffness: 200, damping: 20 },
+              scale: { type: 'spring', stiffness: 200, damping: 9 },
             }}
-            exit={{ opacity: 0, scale: 0.8 }}
+            exit={{ opacity: 0, scale: 0.7 }}
             className="fixed bottom-0 z-50 h-full w-full overflow-y-auto bg-background"
           >
             <div className="sticky top-0 z-40 flex w-full translate-y-0 items-center justify-between p-4">
               <div className="flex items-center justify-center gap-2">
                 <AppLogo className="size-8" />
-                <h1 className="text-xl font-bold text-primary">Garbot</h1>
+                <h1 className="text-xl font-semibold text-primary">Garbot</h1>
               </div>
               <X className="h-6 w-6 cursor-pointer" onClick={toggleChat} />
             </div>
