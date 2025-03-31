@@ -14,7 +14,7 @@ import {
 import { __ } from '@/lib/lang';
 import { Link } from '@inertiajs/react';
 import { Headset, Menu, Siren } from 'lucide-react';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { AppLogo } from './app-logo';
 import { FlagEnglish, FlagIndo } from './flag';
 
@@ -33,6 +33,16 @@ export default function ResponsiveNavbar() {
   ];
   const [selectedLanguage, setSelectedLanguage] = useState(languages[0]);
   const [open, setOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
 
   return (
     <>
@@ -46,7 +56,11 @@ export default function ResponsiveNavbar() {
           <h3 className="ml-2 text-xs text-rose-800">+62 812 5286 6162</h3>
         </div>
       </div>
-      <div className="sticky top-0 z-50 block bg-background/95 px-4 py-4 backdrop-blur-2xl lg:hidden">
+      <div
+        className={`sticky top-0 z-50 block bg-background/70 px-4 py-4 backdrop-blur-xl transition-shadow duration-300 lg:hidden ${
+          isScrolled ? 'shadow-md' : 'shadow-none'
+        }`}
+      >
         <div className="flex items-center justify-between">
           <Link href="/">
             <div className="flex items-center">

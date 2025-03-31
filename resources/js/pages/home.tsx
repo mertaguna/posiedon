@@ -9,6 +9,7 @@ import {
   CarouselPrevious,
 } from '@/components/ui/carousel';
 import { Skeleton } from '@/components/ui/skeleton';
+import VideoBackgroundSection from '@/components/video-background';
 import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
 import { PageProps } from '@/types';
@@ -32,7 +33,7 @@ export default function Home({ articles }: PageProps) {
   return (
     <>
       <Head title={__('Home')} />
-      <div className="relative flex flex-col-reverse lg:flex-col lg:py-16 lg:pb-0 lg:pt-0">
+      <div className="relative flex flex-col-reverse lg:flex-col lg:py-16">
         <div className="inset-y-0 right-0 top-0 z-0 mx-auto w-full max-w-xl px-2 py-6 md:px-0 lg:absolute lg:mx-0 lg:mb-0 lg:w-7/12 lg:max-w-full lg:py-0 lg:pr-0 xl:px-0">
           <svg
             className="absolute left-0 z-10 hidden h-full -translate-x-1/2 transform text-background lg:block"
@@ -45,10 +46,13 @@ export default function Home({ articles }: PageProps) {
           {!imageLoaded[0] && (
             <Skeleton className="h-56 w-full rounded-xl md:h-96 lg:h-full lg:rounded-none" />
           )}
+
           <img
-            className={`h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:h-full lg:rounded-none lg:shadow-none ${imageLoaded[0] ? 'block' : 'hidden'}`}
+            className={`hidden h-56 w-full rounded-xl object-cover shadow-lg md:h-96 lg:block lg:h-full lg:rounded-none lg:shadow-none ${imageLoaded[0] ? 'block' : 'hidden'}`}
             src={garbaFoto}
             alt="garba"
+            width="800"
+            height="600"
             onLoad={() => handleImageLoad(0)}
           />
         </div>
@@ -70,10 +74,12 @@ export default function Home({ articles }: PageProps) {
               )}
             </p>
             <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-start">
-              <Button className="rounded-2xl px-9 py-7 font-extrabold text-amber-200 shadow-lg">
-                <Calendar className="stroke-[3px]" />
-                <div>{__('Appointment')}</div>
-              </Button>
+              <Link href={route('appointment')}>
+                <Button className="rounded-2xl px-9 py-7 font-extrabold text-amber-200 shadow-lg">
+                  <Calendar className="stroke-[3px]" />
+                  <div>{__('Appointment')}</div>
+                </Button>
+              </Link>
               <Link href={route('specialist.index')}>
                 <Button variant={'link'} className="rounded-2xl px-9 py-6">
                   {__('Our specialist')}
@@ -85,13 +91,14 @@ export default function Home({ articles }: PageProps) {
         </div>
       </div>
 
-      <Container className="mx-4 px-10 py-12">
+      {/* Blog */}
+      <Container className="mx-auto py-4 lg:py-12">
         <div className="flex flex-col lg:flex-row">
           <div className="mb-4 text-center lg:w-1/3 lg:text-start">
             <h2 className="text-xl font-semibold md:text-3xl">
               News & Healthpedia
             </h2>
-            <p className="mb-6 mt-2 text-sm text-gray-700 md:text-lg lg:mr-10">
+            <p className="my-2 text-sm text-gray-700 md:text-lg lg:mr-10">
               Find useful health information for your healthier life through our
               blog articles.
             </p>
@@ -102,10 +109,13 @@ export default function Home({ articles }: PageProps) {
                 align: 'start',
               }}
             >
-              <CarouselContent>
+              <CarouselContent className="pr-10">
                 {artikel.map((item, index) => (
-                  <CarouselItem className="lg:basis-1/4" key={item.slug}>
-                    <div className="overflow-hidden rounded-3xl bg-white shadow-sm">
+                  <CarouselItem
+                    className="sm:basis-2/4 lg:basis-1/3"
+                    key={item.slug}
+                  >
+                    <div className="overflow-hidden rounded-xl bg-white">
                       <Link
                         aria-label={item.title}
                         href={route('article.show', item.slug)}
@@ -117,6 +127,8 @@ export default function Home({ articles }: PageProps) {
                           src={item.picture}
                           alt={item.title}
                           className={`h-56 w-full object-cover ${imageLoaded[index + 1] ? 'block' : 'hidden'}`}
+                          width="400"
+                          height="300"
                           onLoad={() => handleImageLoad(index + 1)}
                         />
                       </Link>
@@ -137,12 +149,15 @@ export default function Home({ articles }: PageProps) {
                   </CarouselItem>
                 ))}
               </CarouselContent>
-              <CarouselPrevious className="border-none shadow-none" />
-              <CarouselNext className="border-none shadow-none" />
+              <CarouselPrevious className="hidden border-none shadow-none lg:block" />
+              <CarouselNext className="hidden border-none shadow-none lg:block" />
             </Carousel>
           </div>
         </div>
       </Container>
+
+      {/* Our Service */}
+      <VideoBackgroundSection />
 
       <div className="">
         <div className="pt-5 text-center text-xl tracking-tight sm:text-2xl">

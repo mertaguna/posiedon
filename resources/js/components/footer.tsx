@@ -8,7 +8,7 @@ import { IconWhatsapp } from './flag';
 export function Footer() {
   return (
     <Container className="bg-gradient-to-br from-primary to-blue-700 pt-10">
-      <div className="row-gap-6 mb-8 grid gap-10 text-white md:grid-cols-5">
+      <div className="mb-8 grid gap-10 text-white md:grid-cols-5 md:gap-0">
         <div className="sm:col-span-2">
           <Link href="/">
             <div className="flex items-center">

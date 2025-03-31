@@ -48,7 +48,7 @@ export default function ButtonBot({
           },
         }}
         transition={{ duration: 0.5, ease: 'easeInOut' }}
-        className="rounded-2xl bg-gradient-to-tr from-primary to-blue-700 p-4"
+        className="cursor-pointer rounded-2xl bg-gradient-to-tr from-primary to-blue-700 p-4"
       >
         <motion.div
           animate={{

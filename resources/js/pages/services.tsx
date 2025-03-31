@@ -1,3 +1,6 @@
+import { motion, useInView } from 'framer-motion';
+import { useRef } from 'react';
+
 export default function Services() {
   return (
     <div className="min-h-screen bg-gray-100 p-8">
@@ -14,80 +17,36 @@ export default function Services() {
         </p>
 
         <div className="space-y-8">
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold text-blue-800">
-              1. Layanan Rawat Inap
-            </h2>
-            <ul className="list-inside list-disc text-gray-700">
-              <li>
-                Kamar VIP dan Kelas I, II, III dengan fasilitas yang lengkap
-              </li>
-              <li>
-                Perawatan intensif (ICU dan NICU) untuk pasien dengan kebutuhan
-                khusus
-              </li>
-              <li>
-                Layanan perawat 24 jam yang siap membantu setiap kebutuhan medis
-                Anda
-              </li>
-            </ul>
-          </section>
+          {[...Array(6)].map((_, index) => {
+            const sectionRef = useRef(null);
+            const isInView = useInView(sectionRef, { once: true, margin: '-100px' });
 
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold text-blue-800">
-              2. Layanan Rawat Jalan
-            </h2>
-            <ul className="list-inside list-disc text-gray-700">
-              <li>Poliklinik Umum dan Spesialis</li>
-              <li>Konsultasi Gizi dan Psikologi</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold text-blue-800">
-              3. Layanan Gawat Darurat (UGD 24 Jam)
-            </h2>
-            <ul className="list-inside list-disc text-gray-700">
-              <li>Ambulans Siaga</li>
-              <li>Dokter dan perawat terlatih dalam kegawatdaruratan</li>
-              <li>Peralatan medis modern dan lengkap</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold text-blue-800">
-              4. Layanan Penunjang Medis
-            </h2>
-            <ul className="list-inside list-disc text-gray-700">
-              <li>Laboratorium Klinik</li>
-              <li>Radiologi (X-ray, CT Scan, USG)</li>
-              <li>Fisioterapi dan Rehabilitasi Medik</li>
-              <li>Farmasi 24 Jam</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold text-blue-800">
-              5. Layanan Khusus dan Bedah
-            </h2>
-            <ul className="list-inside list-disc text-gray-700">
-              <li>Bedah Umum dan Bedah Digestif</li>
-              <li>Bedah Ortopedi dan Traumatologi</li>
-              <li>Bedah Gigi dan Mulut</li>
-              <li>Bedah Plastik dan Estetika</li>
-            </ul>
-          </section>
-
-          <section>
-            <h2 className="mb-4 text-2xl font-semibold text-blue-800">
-              6. Layanan Kesehatan Ibu dan Anak
-            </h2>
-            <ul className="list-inside list-disc text-gray-700">
-              <li>Persalinan dan Perawatan Bayi Baru Lahir</li>
-              <li>Konsultasi Kehamilan dan USG 4D</li>
-              <li>Imunisasi dan Klinik Tumbuh Kembang Anak</li>
-            </ul>
-          </section>
+            return (
+              <motion.section
+                key={index}
+                ref={sectionRef}
+                initial={{ opacity: 0, y: 50 }}
+                animate={{ opacity: isInView ? 1 : 0, y: isInView ? 0 : 50 }}
+                transition={{ duration: 0.8 }}
+              >
+                <h2 className="mb-4 text-2xl font-semibold text-blue-800">
+                  {index + 1}. Layanan {['Rawat Inap', 'Rawat Jalan', 'Gawat Darurat (UGD 24 Jam)', 'Penunjang Medis', 'Khusus dan Bedah', 'Kesehatan Ibu dan Anak'][index]}
+                </h2>
+                <ul className="list-inside list-disc text-gray-700">
+                  {[
+                    ['Kamar VIP dan Kelas I, II, III dengan fasilitas yang lengkap', 'Perawatan intensif (ICU dan NICU) untuk pasien dengan kebutuhan khusus', 'Layanan perawat 24 jam'],
+                    ['Poliklinik Umum dan Spesialis', 'Konsultasi Gizi dan Psikologi'],
+                    ['Ambulans Siaga', 'Dokter dan perawat terlatih dalam kegawatdaruratan', 'Peralatan medis modern'],
+                    ['Laboratorium Klinik', 'Radiologi (X-ray, CT Scan, USG)', 'Fisioterapi dan Rehabilitasi Medik', 'Farmasi 24 Jam'],
+                    ['Bedah Umum dan Bedah Digestif', 'Bedah Ortopedi dan Traumatologi', 'Bedah Gigi dan Mulut', 'Bedah Plastik dan Estetika'],
+                    ['Persalinan dan Perawatan Bayi Baru Lahir', 'Konsultasi Kehamilan dan USG 4D', 'Imunisasi dan Klinik Tumbuh Kembang Anak']
+                  ][index].map((item, i) => (
+                    <li key={i}>{item}</li>
+                  ))}
+                </ul>
+              </motion.section>
+            );
+          })}
         </div>
       </div>
     </div>

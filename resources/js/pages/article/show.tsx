@@ -31,7 +31,7 @@ export default function Show(props: any) {
 
   return (
     <>
-      <Head title="Article" />
+      <Head title={article.title} />
       <ArticleHeader title={article.title} />
       <Container className="px-4 md:px-8 lg:px-36">
         <div className="flex flex-col-reverse lg:flex-row-reverse lg:gap-10">
@@ -51,21 +51,21 @@ export default function Show(props: any) {
           <div className="w-full lg:w-1/2">
             <div className="flex h-full flex-col justify-between">
               <div>
-                <h3 className="mt-2 lg:mt-0 lg:pb-4">
+                <h3 className="mb-2 mt-2 lg:mt-0 lg:pb-4">
                   <Link
                     href={route('categories.show', article.category.slug)}
-                    className="text-md font-medium underline-offset-8 hover:underline"
+                    className="text-md font-medium underline underline-offset-8"
                   >
-                    {article.category.name}
+                    # {article.category.name}
                   </Link>
                 </h3>
-                <div className="mb-2 mt-2 text-2xl font-black md:text-4xl lg:mt-0 lg:text-5xl">
+                <div className="mb-2 mt-2 text-2xl font-black text-foreground md:text-4xl lg:mt-0 lg:text-5xl">
                   {article.title}
                 </div>
                 <div className="pt-3 text-xs md:text-lg">
                   {article.created_at}
                 </div>
-                <div className="mt-3 flex items-center gap-4">
+                <div className="mt-3 flex items-center gap-2">
                   <Avatar className="size-6 md:size-10">
                     <AvatarImage
                       src="https://github.com/shadcn.png"
@@ -122,12 +122,9 @@ export default function Show(props: any) {
                 {articles.length ? (
                   <ul className="space-y-4">
                     {articles.map((relatedArticle: any, index: number) => (
-                      <Link
-                        key={index}
-                        href={route('article.show', relatedArticle.slug)}
-                      >
-                        <li
-                          key={relatedArticle.slug}
+                      <li key={index}>
+                        <Link
+                          href={route('article.show', relatedArticle.slug)}
                           className="flex gap-4 py-4"
                         >
                           <div className="w-32 flex-none">
@@ -145,8 +142,8 @@ export default function Show(props: any) {
                           <div className="underline-offset-2 hover:underline">
                             {relatedArticle.title}
                           </div>
-                        </li>
-                      </Link>
+                        </Link>
+                      </li>
                     ))}
                   </ul>
                 ) : (

@@ -24,11 +24,30 @@ RSU Garba Méd adalah rumah sakit umum swasta yang berlokasi di Badung Utara den
 📌 **Cara Pendaftaran**
 
 🔹 **Melalui Aplikasi Mobile JKN**
-1. Unduh aplikasi Mobile JKN di Google Play Store atau Apple App Store.
-2. Buka aplikasi dan pilih “Daftar” jika belum memiliki akun.
-3. Isi data pribadi seperti nama, tanggal lahir, dan nomor BPJS.
-4. Ikuti petunjuk di layar hingga proses pendaftaran selesai.
-5. Setelah terdaftar, Anda bisa login untuk mengecek status kepesertaan, melihat riwayat medis, dan mencari fasilitas kesehatan.
+Berikut langkah-langkah bagi pasien yang sudah memiliki akun Mobile JKN (MJKN) untuk melakukan pemilihan dokter (booking schedule) ke fasilitas kesehatan tingkat lanjut seperti rumah sakit:
+
+📌 Cara Booking Dokter di RS Garbamed Menggunakan Mobile JKN
+	1.	Buka Aplikasi Mobile JKN
+	•	Pastikan aplikasi Mobile JKN sudah terpasang di perangkat Anda.
+	•	Login menggunakan NIK / Nomor BPJS dan kata sandi.
+	2.	Pilih Menu “Pendaftaran Pelayanan”
+	•	Pada halaman utama, pilih Pendaftaran Pelayanan untuk membuat janji temu.
+	3.	Pilih Fasilitas Kesehatan Tingkat Lanjut
+	•	Pilih Fasilitas Kesehatan Rujukan (misalnya RSU Garba Méd).
+	•	Jika belum memiliki rujukan, pastikan Anda mendapatkan rujukan dari Faskes Tingkat 1 (Puskesmas/Klinik).
+	4.	Pilih Poli & Dokter
+	•	Pilih poli spesialis yang ingin dituju (contoh: Poli Penyakit Dalam).
+	•	Pilih dokter yang tersedia sesuai jadwal praktik.
+	5.	Pilih Tanggal & Jam Konsultasi
+	•	Sesuaikan dengan jadwal dokter yang dipilih.
+	•	Jika slot penuh, coba pilih dokter lain atau tanggal lain yang masih tersedia.
+	6.	Konfirmasi Pendaftaran
+	•	Periksa kembali detail pemesanan.
+	•	Klik Daftar untuk menyelesaikan booking.
+	•	Anda akan menerima kode booking yang harus ditunjukkan saat datang ke rumah sakit.
+	7.	Datang ke Rumah Sakit Sesuai Jadwal
+	•	Tunjukkan kode booking di loket pendaftaran rumah sakit.
+	•	Pastikan membawa KTP, Kartu BPJS, dan Surat Rujukan (jika diperlukan).
 
 🔹 **Melalui Kontak Langsung**
 ☎️ Telepon: +62 812 5286 6162

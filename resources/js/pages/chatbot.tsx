@@ -15,7 +15,7 @@ import { X } from 'lucide-react';
 import { AnimatePresence, motion } from 'framer-motion';
 
 import ButtonBot from '@/components/ui/button-bot';
-import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { RiRobot2Fill } from 'react-icons/ri';
 import { GarbaBotInfo } from '../lib/garbabot';
 
@@ -81,25 +81,6 @@ export default function Chatbot() {
     setOpen(!open);
   };
   const isDesktop = useMediaQuery('(min-width: 768px)');
-  const [chatHeight, setChatHeight] = useState('75vh'); // Default tinggi
-
-  // Menyesuaikan tinggi chatbox saat keyboard muncul
-  useLayoutEffect(() => {
-    const updateHeight = () => {
-      requestAnimationFrame(() => {
-        const viewportHeight = window.innerHeight;
-        setChatHeight(`${viewportHeight * 0.7}px`); // Sesuaikan tinggi dengan layar
-      });
-    };
-
-    // Perbaiki bug pertama kali akses
-    setTimeout(updateHeight, 50);
-
-    window.addEventListener('resize', updateHeight);
-    return () => {
-      window.removeEventListener('resize', updateHeight);
-    };
-  }, []);
 
   useEffect(() => {
     if (open) {
@@ -191,7 +172,7 @@ export default function Chatbot() {
             {/* bot body */}
             <div
               ref={chatBodyRef}
-              className="max-h-[80vh] overflow-auto p-4 pb-16"
+              className="max-h-[80vh] overflow-auto p-4 pb-20"
             >
               <div className="flex flex-col gap-2">
                 <div className="flex max-w-xs items-end gap-2">

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AboutController;
+use App\Http\Controllers\AppointmentController;
 use App\Http\Controllers\ArticleController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\ChatbotController;
@@ -48,6 +49,7 @@ Route::middleware('locale')->group(function () {
 
     Route::get('excellence', ExcellenceController::class)->name('excellence');
     Route::get('about', AboutController::class)->name('about');
+    Route::get('appointment', AppointmentController::class)->name('appointment');
     Route::get('chatbot', ChatbotController::class)->name('chatbot');
 
     require __DIR__ . '/auth.php';

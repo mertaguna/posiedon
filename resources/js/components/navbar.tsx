@@ -52,7 +52,7 @@ export function Navbar() {
               <AppLogo className="size-16" />
               <span className="sr-only">go to home page</span>
               <div className="flex flex-col">
-                <div className="font-manrope ml-2 font-sans text-xl font-medium leading-snug text-primary [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)] md:text-2xl">
+                <div className="ml-2 font-sans text-xl font-semibold leading-snug text-primary [text-shadow:_3px_2px_4px_rgb(99_102_241_/_0.3)] md:text-2xl">
                   {__('Garbaméd Hospital')}
                 </div>
                 <div className="ml-2">Safety and Integrity</div>
