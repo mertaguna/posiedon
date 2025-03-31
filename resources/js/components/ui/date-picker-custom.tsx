@@ -41,11 +41,11 @@ export function DatePicker({
   onChange,
   startYear = getYear(new Date()) - 100,
   endYear = getYear(new Date()),
-  placeholder = 'Pick a date',
+  placeholder = 'Pick a date', // Default placeholder text
 }: DatePickerProps) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
   const [date, setDate] = React.useState<Date | null>(
-    value ? new Date(value) : null,
+    value ? new Date(value) : null, // Default to null if no value is provided
   );
 
   const months = [
@@ -97,9 +97,16 @@ export function DatePicker({
           <Button
             variant="outline"
             className={cn(
-              'w-full justify-start border-primary py-5 text-left font-normal',
-              !date && 'text-muted-foreground',
+              'w-full justify-start border-primary py-5 text-left font-normal hover:bg-background',
+              !date && 'text-muted-foreground', // Apply muted style if no date is selected
             )}
+            onClick={() => {
+              if (!date) {
+                const today = new Date();
+                setDate(today); // Set default value to today
+                onChange(format(today, 'yyyy-MM-dd')); // Trigger onChange callback with today's date
+              }
+            }}
           >
             <CalendarIcon className="mr-2 h-5 w-5" />
             {date ? format(date, 'PPP') : <span>{placeholder}</span>}
@@ -131,7 +138,11 @@ export function DatePicker({
               </SelectTrigger>
               <SelectContent>
                 {years.map((year, index) => (
-                  <SelectItem value={year.toString()} key={index}>
+                  <SelectItem
+                    className="font-mono"
+                    value={year.toString()}
+                    key={index}
+                  >
                     {year}
                   </SelectItem>
                 ))}
@@ -158,8 +169,15 @@ export function DatePicker({
           variant="outline"
           className={cn(
             'text-md w-full justify-start border-primary py-5 text-left font-normal',
-            !date && 'text-muted-foreground',
+            !date && 'text-muted-foreground', // Apply muted style if no date is selected
           )}
+          onClick={() => {
+            if (!date) {
+              const today = new Date();
+              setDate(today); // Set default value to today
+              onChange(format(today, 'yyyy-MM-dd')); // Trigger onChange callback with today's date
+            }
+          }}
         >
           <CalendarIcon className="mr-2 h-5 w-5" />
           {date ? format(date, 'PPP') : <span>{placeholder}</span>}
@@ -167,7 +185,7 @@ export function DatePicker({
       </DrawerTrigger>
       <DrawerContent>
         <DrawerHeader>
-          <DrawerTitle>Select a Date</DrawerTitle>
+          <DrawerTitle>Tanggal Lahir Anda</DrawerTitle>
           <DrawerDescription className="hidden">description</DrawerDescription>
         </DrawerHeader>
         <div className="border-divider flex justify-between gap-2 border-b p-4">
@@ -195,7 +213,11 @@ export function DatePicker({
             </SelectTrigger>
             <SelectContent>
               {years.map((year, index) => (
-                <SelectItem value={year.toString()} key={index}>
+                <SelectItem
+                  className="font-mono"
+                  value={year.toString()}
+                  key={index}
+                >
                   {year}
                 </SelectItem>
               ))}

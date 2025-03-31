@@ -2,6 +2,7 @@ import { Button } from '@/components/ui/button';
 import { DatePicker } from '@/components/ui/date-picker-custom';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
+import { PhoneInput } from '@/components/ui/phone-input';
 import { RadioGroup, RadioGroupItem } from '@/components/ui/radio-group-custom';
 import Stepper from '@/components/ui/stepper';
 import SplitLayout from '@/Layouts/split-layout';
@@ -87,8 +88,6 @@ export default function Appointment() {
     // Add your form submission logic here (e.g., API call)
   };
 
-  const [selectedDate, setSelectedDate] = useState<Date | null>(null);
-
   const steps = [
     // Step 1: Patient Type Selection
     <div className="flex h-full items-start justify-center">
@@ -148,11 +147,12 @@ export default function Appointment() {
               <Label htmlFor="r2">Perempuan</Label>
             </div>
           </RadioGroup>
-          <Input
+          <PhoneInput
             placeholder="Nomor WA"
-            type="number"
+            value={data.phone}
+            onChange={(value) => setValue('phone', value)}
             id="phone"
-            {...register('phone')}
+            defaultCountry="ID"
           />
         </div>
       )}
@@ -174,39 +174,6 @@ export default function Appointment() {
             placeholder="NIK"
             id="nik"
             {...register('nik')}
-          />
-          <Input placeholder="Nama Lengkap" id="name" {...register('name')} />
-          <div className="flex gap-2">
-            <Input
-              placeholder="Tempat lahir"
-              id="place"
-              {...register('place')}
-            />
-            <DatePicker
-              value={data.date_born}
-              onChange={(date) => setValue('date_born', date)}
-              placeholder="Tanggal lahir"
-            />
-          </div>
-          <RadioGroup
-            value={data.gender}
-            onValueChange={(value: any) => setValue('gender', value)}
-            className="flex items-center justify-between space-x-2"
-          >
-            <div className="flex items-center gap-2">
-              <RadioGroupItem value="laki-laki" id="r1" />
-              <Label htmlFor="r1">Laki-laki</Label>
-            </div>
-            <div className="flex items-center gap-2">
-              <RadioGroupItem value="perempuan" id="r2" />
-              <Label htmlFor="r2">Perempuan</Label>
-            </div>
-          </RadioGroup>
-          <Input
-            placeholder="Nomor WA"
-            type="number"
-            id="phone"
-            {...register('phone')}
           />
         </div>
       )}
