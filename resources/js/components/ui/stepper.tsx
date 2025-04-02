@@ -58,7 +58,7 @@ export default function Stepper({
         {steps.map((_, index) => (
           <div
             key={index}
-            className={`relative z-10 flex-1 text-center ${
+            className={`relative z-10 hidden flex-1 text-center ${
               index <= currentStep
                 ? 'font-bold text-primary'
                 : completedSteps[index]
@@ -91,8 +91,8 @@ export default function Stepper({
             custom={direction}
             initial={{ x: direction > 0 ? 300 : -300, opacity: 0 }}
             animate={{ x: 0, opacity: 1 }}
-            exit={{ x: direction > 0 ? -300 : 300, opacity: 0 }}
-            transition={{ duration: 0.5 }}
+            exit={{ x: direction > 0 ? 300 : -300, opacity: 0 }}
+            transition={{ duration: 0.25 }}
             className="absolute h-full w-full"
           >
             {steps[currentStep]}
@@ -104,21 +104,23 @@ export default function Stepper({
       <div className="flex justify-center gap-4">
         {currentStep > 0 && ( // Hide "Previous" button on the first step
           <Button
-            variant={currentStep === 0 ? 'link' : 'ghost'}
+            variant="ghost"
             onClick={handlePrevious}
-            className="w-full"
+            className="w-full hover:bg-primary/5"
           >
             <ArrowLeft />
             Previous
           </Button>
         )}
-        <Button
-          onClick={handleNext}
-          disabled={isNextDisabled || currentStep === steps.length - 1} // Use isNextDisabled prop
-          className="w-full"
-        >
-          Next
-        </Button>
+        {currentStep < steps.length - 1 && ( // Hide "Next" button on the last step
+          <Button
+            onClick={handleNext}
+            disabled={isNextDisabled} // Use isNextDisabled prop
+            className="w-full"
+          >
+            Next
+          </Button>
+        )}
       </div>
     </div>
   );

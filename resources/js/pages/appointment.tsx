@@ -31,7 +31,7 @@ export default function Appointment() {
     handleSubmit,
     setValue,
     watch,
-    formState: { errors },
+    formState: { errors, isValid },
   } = useForm<RegisterForm>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -187,9 +187,16 @@ export default function Appointment() {
     </div>,
 
     // Step 3: Confirmation with Submit Button
-    <div className="flex h-full flex-col items-center justify-center gap-4 bg-blue-100">
+    <div className="flex h-full flex-col items-center justify-center gap-4">
       <p className="text-lg font-bold">Konfirmasi Data Anda</p>
-      <Button onClick={handleSubmit(onSubmit)}>Submit</Button>
+      <Button onClick={handleSubmit(onSubmit)} disabled={!isValid}>
+        Submit
+      </Button>
+      {!isValid && (
+        <p className="text-sm text-red-500">
+          Harap lengkapi semua input yang diperlukan.
+        </p>
+      )}
     </div>,
   ];
 
