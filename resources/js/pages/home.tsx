@@ -1,6 +1,7 @@
 import { Container } from '@/components/container';
 import { MovingCardsPartner } from '@/components/moving-card';
 import { Button } from '@/components/ui/button';
+import { ButtonCustom } from '@/components/ui/button-custom';
 import {
   Carousel,
   CarouselContent,
@@ -75,10 +76,13 @@ export default function Home({ articles }: PageProps) {
             </p>
             <div className="flex flex-col items-center justify-center lg:flex-row lg:justify-start">
               <Link href={route('appointment')}>
-                <Button className="rounded-2xl px-9 py-7 font-extrabold text-amber-200 shadow-lg">
+                <ButtonCustom
+                  effect={'shine'}
+                  className="rounded-xl px-9 py-7 font-extrabold text-amber-200 shadow-lg"
+                >
                   <Calendar className="stroke-[3px]" />
                   <div>{__('Appointment')}</div>
-                </Button>
+                </ButtonCustom>
               </Link>
               <Link href={route('specialist.index')}>
                 <Button variant={'link'} className="rounded-2xl px-9 py-6">

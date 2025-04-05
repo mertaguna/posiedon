@@ -1,6 +1,8 @@
 import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { ArrowRight } from 'lucide-react';
 import React, { useRef } from 'react';
 import { Container } from './container';
+import { ButtonCustom } from './ui/button-custom';
 
 const VideoBackgroundSection: React.FC = () => {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -46,7 +48,7 @@ const VideoBackgroundSection: React.FC = () => {
         </motion.video>
 
         {/* Overlay */}
-        <div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-60"></div>
+        <div className="absolute left-0 top-0 h-full w-full bg-black bg-opacity-70"></div>
 
         {/* Content */}
         <motion.div
@@ -55,19 +57,22 @@ const VideoBackgroundSection: React.FC = () => {
           animate={{ y: isInView ? 0 : 50, opacity: isInView ? 1 : 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="text-2xl font-bold sm:text-3xl md:text-6xl">
-            Our Service
-          </div>
-          <p className="mt-2 text-sm sm:text-lg md:text-xl">
-            Experience the best visuals with our background video section.
+          <p className="max-w-sm text-sm font-semibold sm:text-lg md:text-xl">
+            Our dedicated team of professionals is here to provide you with the
+            best care possible.
           </p>
-          <motion.button
-            className="mt-4 w-full max-w-xs rounded-lg bg-gradient-to-tr from-primary to-blue-700 px-2 py-3 text-base font-semibold text-white hover:bg-blue-700 sm:w-auto sm:px-6 sm:py-3 sm:text-lg"
-            whileHover={{ scale: 1.05 }}
-            whileTap={{ scale: 0.95 }}
+
+          <ButtonCustom
+            className="mt-2 text-primary"
+            variant={'outline'}
+            effect={'expandIcon'}
+            icon={ArrowRight}
+            iconPlacement="right"
           >
-            View
-          </motion.button>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              Our Service
+            </motion.div>
+          </ButtonCustom>
         </motion.div>
       </motion.div>
     </Container>

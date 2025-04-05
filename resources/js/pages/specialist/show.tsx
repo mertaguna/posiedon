@@ -13,6 +13,7 @@ import {
 } from '@/components/ui/dialog';
 import { Skeleton } from '@/components/ui/skeleton';
 import AppLayout from '@/Layouts/app-layout';
+import { Head } from '@inertiajs/react';
 import { useState } from 'react';
 
 interface SpecialistProps {
@@ -38,6 +39,7 @@ export default function Show({ specialist, ...props }: SpecialistProps) {
 
   return (
     <>
+      <Head title={specialist.name} />
       <div className="mb-8 grid grid-cols-12 bg-blue-50 py-11 bg-pattern-blue-50 lg:py-32">
         <div className="col-span-12">
           <div className="text-center text-2xl font-bold lg:text-6xl">

@@ -16,7 +16,7 @@ class SpecialistController extends Controller
         $specialists = Specialist::query()
         ->select('name', 'slug')
         ->latest()
-        ->fastPaginate();
+        ->fastPaginate(30);
 
         // return SpecialistItemResource::collection($specialists);
         return inertia('specialist/index', [
@@ -31,7 +31,7 @@ class SpecialistController extends Controller
             ->orWhereBelongsTo($specialist)
             ->select('name', 'picture', 'specialist_id', 'id')
             ->latest()
-            ->fastPaginate(9);
+            ->fastPaginate(12);
         // return DoctorItemResource::collection($doctors);
         return inertia('specialist/show',[
             'specialist' => $specialist,

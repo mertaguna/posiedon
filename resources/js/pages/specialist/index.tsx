@@ -1,9 +1,9 @@
 import { Container } from '@/components/container';
 import { Grid } from '@/components/grid';
-import { Pagination } from '@/components/pagination';
 import { Card, CardHeader, CardTitle } from '@/components/ui/card';
 import AppLayout from '@/Layouts/app-layout';
-import { Link } from '@inertiajs/react';
+import { __ } from '@/lib/lang';
+import { Head, Link } from '@inertiajs/react';
 
 interface Specialist {
   name: string;
@@ -29,6 +29,7 @@ export default function Doctor(prop: SpecialistProps) {
   const { data: specialists, meta, links } = prop.specialists;
   return (
     <>
+      <Head title={__('Specialists')} />
       <div className="mb-8 grid grid-cols-12 bg-blue-50 py-11 bg-pattern-blue-50 lg:py-32">
         <div className="col-span-12">
           <div className="text-center text-2xl font-bold lg:text-6xl">
@@ -43,7 +44,7 @@ export default function Doctor(prop: SpecialistProps) {
               {specialists.map((spesialis: any) => (
                 <Card
                   key={spesialis.slug}
-                  className="rounded-3xl border-none shadow-2xl shadow-primary/20"
+                  className="rounded-xl border-none shadow-none"
                 >
                   <Link href={spesialis.url}>
                     <CardHeader>
@@ -53,7 +54,7 @@ export default function Doctor(prop: SpecialistProps) {
                 </Card>
               ))}
             </Grid>
-            <Pagination {...{ meta, links }} />
+            {/* <Pagination {...{ meta, links }} /> */}
           </>
         ) : (
           <div className="text-center text-gray-500">No Specialist found.</div>

@@ -1,7 +1,6 @@
 import { AppLogo } from '@/components/app-logo';
 import { Container } from '@/components/container';
 import { FlagEnglish, FlagIndo } from '@/components/flag';
-import { Button } from '@/components/ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -14,6 +13,7 @@ import { PageProps } from '@/types';
 import { InertiaLinkProps, Link, usePage } from '@inertiajs/react';
 import { Calendar, Headset, Siren } from 'lucide-react';
 import { useEffect, useState } from 'react';
+import { ButtonCustom } from './ui/button-custom';
 
 export function Navbar() {
   const { auth } = usePage<PageProps>().props;
@@ -89,10 +89,13 @@ export function Navbar() {
               </Navlink>
               <Navlink href="#">{__('Our services')}</Navlink>
 
-              <Button className="inline-flex h-12 items-center justify-center gap-2 whitespace-nowrap rounded-xl bg-white px-6 text-sm font-bold text-primary transition duration-300 hover:bg-primary hover:text-amber-200 hover:shadow-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-400 disabled:pointer-events-none disabled:opacity-50">
+              <ButtonCustom
+                effect="shine"
+                className="inline-flex h-12 items-center justify-center gap-2 rounded-xl px-6 font-bold"
+              >
                 <Calendar className="mr-2 size-4 stroke-[3px]" />
                 <Link href={route('home')}>{__('Appointment')}</Link>
-              </Button>
+              </ButtonCustom>
               <DropdownMenu>
                 <DropdownMenuTrigger className="flex flex-row items-center gap-2 uppercase">
                   {selectedLanguage.icon} {selectedLanguage.code}

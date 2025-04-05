@@ -1,7 +1,7 @@
 import AppLayout from '@/Layouts/app-layout';
 import { __ } from '@/lib/lang';
 import { Head } from '@inertiajs/react';
-import { motion, useInView, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll, useTransform } from 'framer-motion';
 import { useRef } from 'react';
 
 export default function About() {
@@ -10,41 +10,40 @@ export default function About() {
     target: ref,
     offset: ['start end', 'end start'],
   });
-  const scale = useTransform(scrollYProgress, [0, 1], [1, 2]);
-  const opacity = useTransform(scrollYProgress, [0, 1], [1, 0.9]);
 
-  const imageRef = useRef(null);
-  const isImageInView = useInView(imageRef, { once: false, margin: '-50px' });
+  // Efek paralaks untuk gambar dan teks
+  const imageScale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
+  const textTranslateY = useTransform(scrollYProgress, [0, 1], [50, -50]);
+  const textOpacity = useTransform(scrollYProgress, [0, 1], [0, 1]);
 
   return (
     <>
       <Head title={__('About us')} />
-      <section className="relative py-24">
-        <div className="mx-auto w-full max-w-7xl px-4 md:px-5 lg:px-5">
-          <motion.div
-            initial={{ opacity: 0, y: 50 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
-          >
-            <h2 className="py-4 text-6xl font-semibold text-gray-900">
-              {__('Garbaméd Hospital')}
-            </h2>
-            <p className="text-center text-base font-normal leading-relaxed text-gray-500 lg:text-start">
-              {__('Description of the hospital')}
-            </p>
-          </motion.div>
-        </div>
-      </section>
-      <section className="relative h-screen overflow-hidden">
+
+      {/* Hero Section dengan Parallax Text */}
+      <section
+        ref={ref}
+        className="relative flex h-screen items-center justify-center overflow-hidden"
+      >
         <motion.div
-          ref={ref}
-          className="absolute inset-0 flex items-center justify-center"
-          style={{ scale, opacity }}
+          style={{ y: textTranslateY, opacity: textOpacity }}
+          transition={{ duration: 0.8 }}
+          className="z-10 text-center"
         >
+          <h2 className="py-4 text-6xl font-semibold text-gray-900">
+            {__('Garbaméd Hospital')}
+          </h2>
+          <p className="text-center text-base font-normal leading-relaxed text-gray-500 lg:text-start">
+            {__('Description of the hospital')}
+          </p>
+        </motion.div>
+      </section>
+
+      {/* Parallax Image Section */}
+      <section className="relative h-screen overflow-hidden">
+        <motion.div className="absolute inset-0" style={{ scale: imageScale }}>
           <img
-            className="h-[50vh] w-full rounded-xl object-cover lg:h-full"
+            className="h-full w-full object-cover"
             src="https://res.cloudinary.com/dv1uabtoz/image/upload/v1739253540/GARBA/FASILITAS/garba%20foto.jpg"
             alt="about Us image"
           />
